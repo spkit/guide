@@ -7,13 +7,9 @@
 </div>
 
 
-<!--# Signal Processing Toolkit -->
+## Signal Processing Toolkit
 
 This python library is focused on signal processing techniques and some of machine learnign algorithms with richer visualization plots to understand better. The most signal processing routines are easily available in scipy, however the newest and some of the sophisticated algorithms and approaches are not always easily available. Here we tend to put them together with more focus on visualizing aspect to get the deeper understanding to the approach.
-
-
-
-
 
 :::{note}
 The latest version of spkit is 0.0.9.4

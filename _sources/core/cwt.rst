@@ -1,5 +1,5 @@
-Complex Wavelets
-================
+Complex Continues Wavelets
+=========================
 
 Notebook
 --------
@@ -18,21 +18,24 @@ A quick example to compare different wavelets
 ----------------------------
 
 ::
-  
+
   import numpy as np
   import matplotlib.pyplot as plt
 
   import spkit
   print('spkit-version ', spkit.__version__)
   import spkit as sp
+
   from spkit.cwt import ScalogramCWT
   from spkit.cwt import compare_cwt_example
-  
+
+  # if above two lines raise error, use sp.cwt.ScalogramCWT and sp.cwt.compare_cwt_example instead
+
   x,fs = sp.load_data.eegSample_1ch()
   t = np.arange(len(x))/fs
-  
+
   compare_cwt_example(x,t,fs=fs)
-  
+
 
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/cwt_2.png
 
@@ -50,16 +53,16 @@ Gauss wavelet
   #TODO Equations clean
 
 The Gauss Wavelet function in time and frequency domain are defined as :math:`\psi(t)` and :math:`\psi(f)` as below;
-   
+
 .. math::
-  
+
   \psi(t) &= e^{-a(t-t_0)^{2}} \cdot e^{-2\pi jf_0(t-t_0)}\\
   \psi(f) &= \sqrt{\pi/a}\left( e^{-2\pi jft_0}\cdot e^{-\pi^{2}((f-f_0)^{2})/a}\right)
-  
+
 **where**
 
 .. math::
-   a = \left( \frac{f_0}{Q} \right)^{2} 
+   a = \left( \frac{f_0}{Q} \right)^{2}
 
 
 **Parameters for a Gauss wavelet**:
@@ -70,9 +73,9 @@ The Gauss Wavelet function in time and frequency domain are defined as :math:`\p
 
 ..
   **where** :math:`a = \left(\frac{f_0}{Q} \right)^{2}`
-  
+
   **where**
-  
+
   .. math::
      a = \left(f_0/Q \right)^{2}
 
@@ -80,11 +83,11 @@ The Gauss Wavelet function in time and frequency domain are defined as :math:`\p
      a = ( f_0/Q )^{2}
 
   .. math::
-     a = ( \frac{f_0}{Q} )^{2} 
+     a = ( \frac{f_0}{Q} )^{2}
 
 
   .. math::
-     a = \left( \frac{f_0}{Q} \right)^{2} 
+     a = \left( \frac{f_0}{Q} \right)^{2}
 
 
   :math: `a = \left( \frac{f_0}{Q} \right)^{2}`
@@ -94,7 +97,7 @@ The Gauss Wavelet function in time and frequency domain are defined as :math:`\p
 
 
 ::
-  
+
   import numpy as np
   import matplotlib.pyplot as plt
 
@@ -112,12 +115,12 @@ Plot wavelet functions
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
-  
-  fs = 128                                   #sampling frequency 
-  tx = np.linspace(-5,5,fs*10+1)             #time 
+
+  fs = 128                                   #sampling frequency
+  tx = np.linspace(-5,5,fs*10+1)             #time
   fx = np.linspace(-fs//2,fs//2,2*len(tx))   #frequency range
-  
-  f01 = 2     #np.linspace(0.1,5,2)[:,None]   
+
+  f01 = 2     #np.linspace(0.1,5,2)[:,None]
   Q1  = 2.5   #np.linspace(0.1,5,10)[:,None]
   wt1,wf1 = sp.cwt.GaussWave(tx,f=fx,f0=f01,Q=Q1)
 
@@ -155,8 +158,8 @@ Plot wavelet functions
   plt.xlim(-5,5)
   plt.xlabel('Frequency')
   plt.show()
- 
- 
+
+
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_1.png
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_2.png
 
@@ -166,7 +169,7 @@ With a range of scale parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
-  
+
   f0 = np.linspace(0.5,10,10)[:,None]
   Q  = np.linspace(1,5,10)[:,None]
   #Q  = 1
@@ -195,8 +198,8 @@ Signal Analysis - EEG
 ~~~~~~~~~~~~~~~~~~~~~
 
 ::
-  
-  
+
+
   x,fs = sp.load_data.eegSample_1ch()
   t = np.arange(len(x))/fs
 
@@ -209,8 +212,8 @@ Signal Analysis - EEG
   plt.xlim(t[0],t[-1])
   plt.grid()
   plt.show()
-  
-  
+
+
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/signal_1.png
 
 
@@ -223,10 +226,10 @@ Scalogram with default parameters
 # Q = 0.5
 
 ::
-  
+
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Gauss',PlotPSD=True)
-  
-  
+
+
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_1.png
 
 
@@ -236,53 +239,53 @@ With a range of frequency and Q
 # from 0.1 to 10 Hz of analysis range and 100 points
 
 ::
-  
+
   f0 = np.linspace(0.1,10,100)
   Q  = np.linspace(0.1,5,100)
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Gauss',PlotPSD=True,f0=f0,Q=Q)
-  
-  
+
+
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_2.png
 
 # from 5 to 10 Hz of analysis range and 100 points
 
 ::
-  
-  
+
+
   f0 = np.linspace(5,10,100)
   Q  = np.linspace(1,4,100)
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Gauss',PlotPSD=True,f0=f0,Q=Q)
-  
+
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_3.png
 
 
 # With constant Q
 
 ::
-   
+
   f0 = np.linspace(5,10,100)
   Q  = 2
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Gauss',PlotPSD=True,f0=f0,Q=Q)
-  
-  
+
+
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_4.png
 
 
-# From 12 to 24 Hz 
+# From 12 to 24 Hz
 
 ::
-  
+
   f0 = np.linspace(12,24,100)
   Q  = 4
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Gauss',PlotPSD=True,f0=f0,Q=Q)
-  
+
 .. image:: https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_5.png
 
 
 With a plot of analysis wavelets
 ~~~~~~~~~~~~~~~~~~~~~
 ::
-  
+
   f0 = np.linspace(12,24,100)
   Q  = 4
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Gauss',PlotPSD=True,PlotW=True, f0=f0,Q=Q)
@@ -307,12 +310,12 @@ Morlet wavelet
 #TODO
 
 The Morlet Wavelet function in time and frequency domain are defined as :math:`\psi(t)` and :math:`\psi(f)` as below;
-   
+
 .. math::
-  
+
   \psi(t) &= C_{\sigma}\pi^{-0.25}  e^{-0.5t^2} \left(e^{j\sigma t}-K_{\sigma} \right)\\
   \psi(w) &= C_{\sigma}\pi^{-0.25} \left(e^{-0.5(\sigma-w)^2} -K_{\sigma}e^{-0.5w^2} \right)
-  
+
 **where**
 
 .. math::
@@ -322,7 +325,7 @@ The Morlet Wavelet function in time and frequency domain are defined as :math:`\
 
 
 ::
-  
+
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Morlet',PlotPSD=True)
 
 
@@ -331,22 +334,22 @@ Gabor wavelet
 #TODO
 
 The Gabor Wavelet function (technically same as Gaussian) in time and frequency domain are defined as :math:`\psi(t)` and :math:`\psi(f)` as below;
-   
+
 .. math::
    \psi(t) &= e^{-(t-t_0)^2/a^2}e^{-jf_0(t-t_0)}\\
    \psi(f) &= e^{-((f-f_0)a)^2}e^{-jt_0(f-f_0)}
- 
+
 **where**
 :math:`a` is oscilation rate and :math:`f_0`  is center frequency
 
 ::
-  
+
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Gabor',PlotPSD=True)
 
 
 Poisson wavelet
 -------------
-Poisson wavelet is defined by positive integers ($n$), unlike other, and associated with Poisson probability distribution 
+Poisson wavelet is defined by positive integers ($n$), unlike other, and associated with Poisson probability distribution
 
 The Poisson Wavelet function in time and frequency domain are defined as :math:`\psi(t)` and :math:`\psi(f)` as below;
 
@@ -356,13 +359,13 @@ The Poisson Wavelet function in time and frequency domain are defined as :math:`
 .. math::
    \psi(t) &= \left(\frac{t-n}{n!}\right)t^{n-1} e^{-t}\\
    \psi(w) &= \frac{-jw}{(1+jw)^{n+1}}
- 
+
 **where**
 
 Admiddibility const :math:`C_{\psi} =\frac{1}{n}` and  :math:`w = 2\pi f`
 
 ::
-  
+
   XW,S = ScalogramCWT(x,t,fs=fs,wType='Poisson',method = 1,PlotPSD=True)
 
 
@@ -373,26 +376,26 @@ Admiddibility const :math:`C_{\psi} =\frac{1}{n}` and  :math:`w = 2\pi f`
    \psi(t) &= \frac{1}{\pi} \frac{1-t^2}{(1+t^2)^2}\\
    \psi(t) &= p(t) + \frac{d}{dt}p(t)\\
    \psi(w) &= |w|e^{-|w|}
- 
- 
+
+
 **where**
-   
+
 .. math::
    p(t) &=\frac{1}{\pi}\frac{1}{1+t^2}\\
    w &= 2\pi f
-   
+
 ::
-  
+
   XW,S = ScalogramCWT(x,t,fs=fs,,wType='Poisson',method = 2,PlotPSD=True)
-  
-  
+
+
 #Type 3 (n)
 ~~~~~~
- 
+
 .. math::
    \psi(t) &= \frac{1}{2\pi}(1-jt)^{-(n+1)}\\
    \psi(w) &= \frac{1}{\Gamma{n+1}}w^{n}e^{-w}u(w)
- 
+
 
 **where**
 
@@ -401,27 +404,27 @@ Admiddibility const :math:`C_{\psi} =\frac{1}{n}` and  :math:`w = 2\pi f`
    w &= 2\pi f
 
 ::
-  
-  XW,S = ScalogramCWT(x,t,fs=fs,wType='Poisson',method = 3,PlotPSD=True)
-  
-  
-#TODO   
 
-Maxican wavelet 
+  XW,S = ScalogramCWT(x,t,fs=fs,wType='Poisson',method = 3,PlotPSD=True)
+
+
+#TODO
+
+Maxican wavelet
 -------------
 Complex Mexican hat wavelet is derived from the conventional Mexican hat wavelet. It is a low-oscillation wavelet which is modulated by a complex exponential function with frequency :math:`f_0` `Ref <https://en.wikipedia.org/wiki/Complex_Mexican_hat_wavelet>`_..
 
 The Maxican Wavelet function in time and frequency domain are defined as :math:`\psi(t)` and :math:`\psi(f)` as below;
-   
+
 .. math::
    \psi(t) &= \frac{2}{\sqrt{3}} \pi^{-\frac{1}{4}}\left(\sqrt{\pi}(1-t^2)e^{-\frac{1}{2}t^2} - \left(\sqrt{2}jt + \sqrt{\pi}erf\left[\frac{j}{\sqrt{2}}t \right] (1-t^2)e^{-\frac{1}{2}t^2}\right)\right)e^{-2\pi jf_0 t}\\\\
    \psi(w) &= 2\sqrt{\frac{2}{3}}\pi^{-1/4}(w-w_0)^2e^{-\frac{1}{2} (w-w_0)^2}  \quad \text{ if  $w\ge 0$,}\quad \text{ 0  else}
- 
- 
+
+
 **where**  :math:`w = 2\pi f` and :math:`w_0 = 2\pi f_0`
 
 ::
-  
+
   XW,S = ScalogramCWT(x,t,fs=fs,wType='cMaxican',PlotPSD=True)
 
 
@@ -432,19 +435,19 @@ Shannon wavelet
 Complex Shannon wavelet is the most simplified wavelet function, exploiting Sinc function by modulating with sinusoidal, which results in an ideal bandpass filter. Real Shannon wavelet is modulated by only a cos function `Ref <https://en.wikipedia.org/wiki/Shannon_wavelet>`_.
 
 The Shannon Wavelet function in time and frequency domain are defined as :math:`\psi(t)` and :math:`\psi(f)` as below;
-   
+
 .. math::
    \psi(t) &= Sinc(t/2) \cdot e^{-2j\pi f_0t}\\
    \psi(w) &= \prod \left( \frac{w-w_0}{\pi} \right)
- 
+
 
 **where**
 
 where :math:`\prod (x) = 1` if :math:`x \leq 0.5`, 0 else and :math:`w = 2\pi f` and :math:`w_0 = 2\pi f_0`
 
 ::
-  
+
   XW,S = ScalogramCWT(x,t,fs=fs,wType='cShannon',PlotPSD=True)
-  
-  
+
+
 #TODO
