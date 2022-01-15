@@ -90,7 +90,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../index.html">
-   Installation:
+   Signal Processing Toolkit
   </a>
  </li>
 </ul>
@@ -101,13 +101,42 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../core/atar_algo.html">
-   ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG
+  <a class="reference internal" href="Dispersion_Entropy_1_demo_EEG.html">
+   Dispersion Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ATAR_Algorithm_EEG_Artifact_Removal.html">
+   ATAR: Automatic and Tunable Artifact Removal Algorithm
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../core/cwt.html">
-   Complex Wavelets
+   Complex Continues Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Wavelet_Filtering_1_demo.html">
+   Wavelet Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.html">
+   Ramanujan Filter Banks for period estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_from_signal.html">
+   Ramanujan Filter Banks with a signal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_with_sparse_penalty.html">
+   Ramanujan Dictionary  - with
+   <span class="math notranslate nohighlight">
+    \(L_1\)
+   </span>
+   sparse penalty
   </a>
  </li>
  <li class="toctree-l1">
@@ -172,11 +201,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/Nikeshbajaj/spkit"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/Nikeshbajaj/Notebooks"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/Nikeshbajaj/spkit/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Entropy_example.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/Nikeshbajaj/Notebooks/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Entropy_example.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -197,13 +226,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/Nikeshbajaj/spkit/master?urlpath=tree/docs/notebooks/Entropy_example.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Nikeshbajaj/Notebooks/HEAD?labpath=spkit/v2/gh/Nikeshbajaj/Notebooks/master?urlpath=lab/tree/spkit/notebooks/Entropy_example.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Nikeshbajaj/Notebooks/blob/master/spkit/notebooks/Entropy_example.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         
     </div>
@@ -371,22 +405,22 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shannan entropy
 ---------------
-Entropy of x: H(x) =  3.437184830854311
-Entropy of y: H(y) =  3.978782249495876
+Entropy of x: H(x) =  3.3111923875087825
+Entropy of y: H(y) =  3.9170796761342332
 -
 Rényi entropy
 ---------------
-Entropy of x: H(x) =  3.4174093118348807
-Entropy of y: H(y) =  3.744061837699739
+Entropy of x: H(x) =  3.299595791948237
+Entropy of y: H(y) =  3.6941718554469523
 -
-Mutual Information I(x,y)  = 	 0.12169653445696493
-Joint Entropy H(x,y)       = 	 7.294270545893222
+Mutual Information I(x,y)  = 	 0.14172627715496322
+Joint Entropy H(x,y)       = 	 7.086545786488053
 -
-Conditional Entropy of : H(x|y) =  3.3154882963973464
-Conditional Entropy of : H(y|x) =  3.8570857150389113
+Conditional Entropy of : H(x|y) =  3.1694661103538193
+Conditional Entropy of : H(y|x) =  3.775353398979271
 -
-Cross Entropy of : H(x,y)              = 	 11.082316566901264
-Kullback–Leibler divergence : Dkl(x,y) = 	 4.872635477032295
+Cross Entropy of : H(x,y)              = 	 8.93872772402631
+Kullback–Leibler divergence : Dkl(x,y) = 	 2.980529375176814
 </pre></div>
 </div>
 </div>
@@ -453,38 +487,38 @@ Kullback–Leibler divergence : Dkl(x,y) = 	 4.872635477032295
   <tbody>
     <tr>
       <th>Shannan entropy</th>
-      <td>3.437185</td>
-      <td>3.978782</td>
+      <td>3.311192</td>
+      <td>3.917080</td>
     </tr>
     <tr>
       <th>Rényi entropy</th>
-      <td>3.417409</td>
-      <td>3.744062</td>
+      <td>3.299596</td>
+      <td>3.694172</td>
     </tr>
     <tr>
       <th>Spectral entropy</th>
-      <td>0.739721</td>
-      <td>0.733247</td>
+      <td>0.704674</td>
+      <td>0.702979</td>
     </tr>
     <tr>
       <th>Sample entropy</th>
-      <td>2.106841</td>
-      <td>1.734601</td>
+      <td>2.181224</td>
+      <td>2.876386</td>
     </tr>
     <tr>
       <th>Approximate entropy</th>
-      <td>0.086072</td>
-      <td>0.119064</td>
+      <td>0.072577</td>
+      <td>0.086552</td>
     </tr>
     <tr>
       <th>SVD entropy</th>
-      <td>1.348778</td>
-      <td>1.584742</td>
+      <td>1.350942</td>
+      <td>1.584904</td>
     </tr>
     <tr>
       <th>Permutation entropy</th>
-      <td>2.579316</td>
-      <td>2.582252</td>
+      <td>2.584356</td>
+      <td>2.584774</td>
     </tr>
   </tbody>
 </table>
@@ -530,27 +564,27 @@ Kullback–Leibler divergence : Dkl(x,y) = 	 4.872635477032295
   <tbody>
     <tr>
       <th>Mutual Information: I(x,y)</th>
-      <td>0.121697</td>
+      <td>0.141726</td>
     </tr>
     <tr>
       <th>Joint Entropy: H(x,y)</th>
-      <td>7.294271</td>
+      <td>7.086546</td>
     </tr>
     <tr>
       <th>Conditional Entropy: H(x|y)</th>
-      <td>3.315488</td>
+      <td>3.169466</td>
     </tr>
     <tr>
       <th>Conditional Entropy: H(y|x)</th>
-      <td>3.857086</td>
+      <td>3.775353</td>
     </tr>
     <tr>
       <th>Cross Entropy: H(x,y)</th>
-      <td>11.082317</td>
+      <td>8.938728</td>
     </tr>
     <tr>
       <th>Kullback–Leibler divergence : Dkl(x,y)</th>
-      <td>4.872635</td>
+      <td>2.980529</td>
     </tr>
   </tbody>
 </table>

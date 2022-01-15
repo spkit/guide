@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Import libraries &#8212; Signal Processing Toolkit</title>
+    <title>ATAR: Automatic and Tunable Artifact Removal Algorithm &#8212; Signal Processing Toolkit</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,6 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Complex Continues Wavelets" href="../core/cwt.html" />
+    <link rel="prev" title="Dispersion Entropy" href="Dispersion_Entropy_1_demo_EEG.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -92,24 +94,53 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../index.html">
-   Installation:
+   Signal Processing Toolkit
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../core/informationtheory.html">
    Information Theory
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../core/atar_algo.html">
-   ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG
+  <a class="reference internal" href="Dispersion_Entropy_1_demo_EEG.html">
+   Dispersion Entropy
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   ATAR: Automatic and Tunable Artifact Removal Algorithm
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../core/cwt.html">
-   Complex Wavelets
+   Complex Continues Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Wavelet_Filtering_1_demo.html">
+   Wavelet Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.html">
+   Ramanujan Filter Banks for period estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_from_signal.html">
+   Ramanujan Filter Banks with a signal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_with_sparse_penalty.html">
+   Ramanujan Dictionary  - with
+   <span class="math notranslate nohighlight">
+    \(L_1\)
+   </span>
+   sparse penalty
   </a>
  </li>
  <li class="toctree-l1">
@@ -174,11 +205,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/Nikeshbajaj/spkit"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/Nikeshbajaj/Notebooks"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/Nikeshbajaj/spkit/issues/new?title=Issue%20on%20page%20%2Fnotebooks/ATAR_Algorithm_EEG_Artifact_Removal.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/Nikeshbajaj/Notebooks/issues/new?title=Issue%20on%20page%20%2Fnotebooks/ATAR_Algorithm_EEG_Artifact_Removal.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -199,13 +230,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/Nikeshbajaj/spkit/master?urlpath=tree/docs/notebooks/ATAR_Algorithm_EEG_Artifact_Removal.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Nikeshbajaj/Notebooks/HEAD?labpath=spkit/v2/gh/Nikeshbajaj/Notebooks/master?urlpath=lab/tree/spkit/notebooks/ATAR_Algorithm_EEG_Artifact_Removal.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Nikeshbajaj/Notebooks/blob/master/spkit/notebooks/ATAR_Algorithm_EEG_Artifact_Removal.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         
     </div>
@@ -223,15 +259,8 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Import libraries
+   ATAR: Automatic and Tunable Artifact Removal Algorithm
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#api-from-spkit">
-     API from spkit
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-eeg-sample-data">
@@ -346,7 +375,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Import libraries</h1>
+                <h1>ATAR: Automatic and Tunable Artifact Removal Algorithm</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -358,15 +387,8 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Import libraries
+   ATAR: Automatic and Tunable Artifact Removal Algorithm
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#api-from-spkit">
-     API from spkit
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-eeg-sample-data">
@@ -481,12 +503,18 @@
               <div>
                 
   <h1>ATAR: Automatic and Tunable Artifact Removal Algorithm<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Import-libraries" data-toc-modified-id="Import-libraries-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Import libraries</a></span><ul class="toc-item"><li><span><a href="#API-from-spkit" data-toc-modified-id="API-from-spkit-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>API from spkit</a></span></li></ul></li><li><span><a href="#Import-EEG-sample-data" data-toc-modified-id="Import-EEG-sample-data-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Import EEG sample data</a></span><ul class="toc-item"><li><span><a href="#Filter-with-highpass" data-toc-modified-id="Filter-with-highpass-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Filter with highpass</a></span></li></ul></li><li><span><a href="#Applying-ATAR-Algorithm" data-toc-modified-id="Applying-ATAR-Algorithm-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Applying ATAR Algorithm</a></span><ul class="toc-item"><li><span><a href="#Soft-Thresholding:-default-settings:-OptMode='soft'-and-$\beta=0.1$" data-toc-modified-id="Soft-Thresholding:-default-settings:-OptMode='soft'-and-$\beta=0.1$-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>Soft Thresholding: default settings: OptMode='soft' and $\beta=0.1$</a></span></li><li><span><a href="#Linear-Attenuation" data-toc-modified-id="Linear-Attenuation-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>Linear Attenuation</a></span></li><li><span><a href="#Elimination" data-toc-modified-id="Elimination-3.3"><span class="toc-item-num">3.3&nbsp;&nbsp;</span>Elimination</a></span></li><li><span><a href="#Tuning-$\beta$-with-'soft'-:-Controlling-the-aggressiveness" data-toc-modified-id="Tuning-$\beta$-with-'soft'-:-Controlling-the-aggressiveness-3.4"><span class="toc-item-num">3.4&nbsp;&nbsp;</span>Tuning $\beta$ with 'soft' : Controlling the aggressiveness</a></span></li><li><span><a href="#Tuning-$\beta$-with-'elim'" data-toc-modified-id="Tuning-$\beta$-with-'elim'-3.5"><span class="toc-item-num">3.5&nbsp;&nbsp;</span>Tuning $\beta$ with 'elim'</a></span></li></ul></li><li><span><a href="#Other-settings" data-toc-modified-id="Other-settings-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Other settings</a></span><ul class="toc-item"><li><span><a href="#Changing-wavelet-function" data-toc-modified-id="Changing-wavelet-function-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Changing wavelet function</a></span></li><li><span><a href="#Changing-upper-and-lower-bounds:-$k_1$,-$k_2$" data-toc-modified-id="Changing-upper-and-lower-bounds:-$k_1$,-$k_2$-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Changing upper and lower bounds: $k_1$, $k_2$</a></span></li><li><span><a href="#Changing-IPR----Interpercentile-range" data-toc-modified-id="Changing-IPR----Interpercentile-range-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Changing IPR -  Interpercentile range</a></span></li><li><span><a href="#Using-the-fix-threshold-$\theta_\alpha=300$,--to-all-the-windows" data-toc-modified-id="Using-the-fix-threshold-$\theta_\alpha=300$,--to-all-the-windows-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Using the fix threshold $\theta_\alpha=300$,  to all the windows</a></span></li><li><span><a href="#Changing-window-length-(5-sec)" data-toc-modified-id="Changing-window-length-(5-sec)-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span>Changing window length (5 sec)</a></span></li></ul></li><li><span><a href="#Doc" data-toc-modified-id="Doc-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Doc</a></span></li></ul></div><p><strong>ATAR Algorithm -  Automatic and Tunable Artifact Removal Algorithm for EEG Signal.</strong></p>
-<p>The algorithm is based on wavelet packet decomposion (WPD), the full description of algorithm can be found here <a class="reference external" href="https://doi.org/10.1016/j.bspc.2019.101624">Automatic and Tunable Artifact Removal Algorithm for EEG</a> from the article.</p>
+<div class="toc"><ul class="toc-item"><li><span><a href="#ATAR:-Automatic-and-Tunable-Artifact-Removal-Algorithm" data-toc-modified-id="ATAR:-Automatic-and-Tunable-Artifact-Removal-Algorithm-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>ATAR: Automatic and Tunable Artifact Removal Algorithm</a></span></li><li><span><a href="#Import-EEG-sample-data" data-toc-modified-id="Import-EEG-sample-data-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Import EEG sample data</a></span><ul class="toc-item"><li><span><a href="#Filter-with-highpass" data-toc-modified-id="Filter-with-highpass-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Filter with highpass</a></span></li></ul></li><li><span><a href="#Applying-ATAR-Algorithm" data-toc-modified-id="Applying-ATAR-Algorithm-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Applying ATAR Algorithm</a></span><ul class="toc-item"><li><span><a href="#Soft-Thresholding:-default-settings:-OptMode='soft'-and-$\beta=0.1$" data-toc-modified-id="Soft-Thresholding:-default-settings:-OptMode='soft'-and-$\beta=0.1$-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>Soft Thresholding: default settings: OptMode='soft' and $\beta=0.1$</a></span></li><li><span><a href="#Linear-Attenuation" data-toc-modified-id="Linear-Attenuation-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>Linear Attenuation</a></span></li><li><span><a href="#Elimination" data-toc-modified-id="Elimination-3.3"><span class="toc-item-num">3.3&nbsp;&nbsp;</span>Elimination</a></span></li><li><span><a href="#Tuning-$\beta$-with-'soft'-:-Controlling-the-aggressiveness" data-toc-modified-id="Tuning-$\beta$-with-'soft'-:-Controlling-the-aggressiveness-3.4"><span class="toc-item-num">3.4&nbsp;&nbsp;</span>Tuning $\beta$ with 'soft' : Controlling the aggressiveness</a></span></li><li><span><a href="#Tuning-$\beta$-with-'elim'" data-toc-modified-id="Tuning-$\beta$-with-'elim'-3.5"><span class="toc-item-num">3.5&nbsp;&nbsp;</span>Tuning $\beta$ with 'elim'</a></span></li></ul></li><li><span><a href="#Other-settings" data-toc-modified-id="Other-settings-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Other settings</a></span><ul class="toc-item"><li><span><a href="#Changing-wavelet-function" data-toc-modified-id="Changing-wavelet-function-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Changing wavelet function</a></span></li><li><span><a href="#Changing-upper-and-lower-bounds:-$k_1$,-$k_2$" data-toc-modified-id="Changing-upper-and-lower-bounds:-$k_1$,-$k_2$-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Changing upper and lower bounds: $k_1$, $k_2$</a></span></li><li><span><a href="#Changing-IPR----Interpercentile-range" data-toc-modified-id="Changing-IPR----Interpercentile-range-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Changing IPR -  Interpercentile range</a></span></li><li><span><a href="#Using-the-fix-threshold-$\theta_\alpha=300$,--to-all-the-windows" data-toc-modified-id="Using-the-fix-threshold-$\theta_\alpha=300$,--to-all-the-windows-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Using the fix threshold $\theta_\alpha=300$,  to all the windows</a></span></li><li><span><a href="#Changing-window-length-(5-sec)" data-toc-modified-id="Changing-window-length-(5-sec)-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span>Changing window length (5 sec)</a></span></li></ul></li><li><span><a href="#Doc" data-toc-modified-id="Doc-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Doc</a></span></li></ul></div><div class="tex2jax_ignore mathjax_ignore section" id="atar-automatic-and-tunable-artifact-removal-algorithm">
+<h1>ATAR: Automatic and Tunable Artifact Removal Algorithm<a class="headerlink" href="#atar-automatic-and-tunable-artifact-removal-algorithm" title="Permalink to this headline">¶</a></h1>
+<p><strong>ATAR Algorithm -  Automatic and Tunable Artifact Removal Algorithm for EEG Signal.</strong></p>
+<p>The algorithm is based on wavelet packet decomposion (WPD), the full description of algorithm can be found here <a class="reference external" href="https://doi.org/10.1016/j.bspc.2019.101624">Automatic and Tunable Artifact Removal Algorithm for EEG</a> from the article [1]. Figure 1 shows the the block diagram and operating mode of filtering.</p>
+<div style="align: left; text-align:center;">
+    <img src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/ATAR_BD_FilteringMode_1.png" width="800" />
+    <div class="caption">Fig 1: ATAR Algorithm Block Diagram and Mode of filtering</div>
+</div>
 <p>The algorithm is applied on the given multichannel signal X (n,nch), window wise and reconstructed with overall add method. The defualt window size is set to 1 sec (128 samples). For each window, the threshold <span class="math notranslate nohighlight">\(\theta_\alpha\)</span> is computed and applied to filter the wavelet coefficients.</p>
 <p>There is manily one parameter that can be tuned <span class="math notranslate nohighlight">\(\beta\)</span> with different operating modes and other settings.
-Here is the list of parameters and there simplified meaning given:
-Parameters:</p>
+Here is the list of parameters and there simplified meaning given:</p>
+<p>Parameters:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\beta\)</span>: This is a main parameter to tune, highher the value, more aggressive the algorithm to remove the artifacts. By default it is set to 0.1. <span class="math notranslate nohighlight">\(\beta\)</span> is postive float value.</p></li>
 <li><p><em><strong>OptMode</strong></em>: This sets the mode of operation, which decides hoe to remove the artifact. By default it is set to ‘soft’, which means Soft Thresholding, in this mode, rather than removing the pressumed artifact, it is suppressed to the threshold, softly. OptMode=’linAtten’, suppresses the pressumed artifact depending on how far it is from threshold. Finally, the most common mode - Elimination (OptMode=’elim’), which remove the pressumed artifact.</p>
@@ -498,8 +526,24 @@ Parameters:</p>
 <li><p><span class="math notranslate nohighlight">\(k_1\)</span>, <span class="math notranslate nohighlight">\(k_2\)</span>: Lower and upper bounds on threshold <span class="math notranslate nohighlight">\(\theta_\alpha\)</span>.</p></li>
 <li><p><em><strong>IPR=[25,75]</strong></em>: interpercentile range, range used to compute threshold</p></li>
 </ul>
-<div class="tex2jax_ignore mathjax_ignore section" id="import-libraries">
-<h1>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h1>
+<p>Figure 2, below, shows the affect of <span class="math notranslate nohighlight">\(\beta\)</span> on a segment of signal with three different modes.</p>
+<div style="align: left; text-align:center;">
+    <img src="https://raw.githubusercontent.com/Nikeshbajaj/spkit/master/figures/atar_beta_tune.gif" width="500" />
+    <div class="caption">Fig 1: ATAR Algorithm with three mode of filtering</div>
+</div>
+<p><strong>Reference</strong></p>
+<ul class="simple">
+<li><p>[1] Bajaj, Nikesh, et al. “Automatic and tunable algorithm for EEG artifact removal using wavelet decomposition with applications in predictive modeling during auditory tasks.” Biomedical Signal Processing and Control 55 (2020): 101624.</p></li>
+</ul>
+<p>There are three functions in <strong>spkit.eeg</strong> for <strong>ATAR algorithm</strong></p>
+<ul class="simple">
+<li><p><strong>spkit.eeg.ATAR(…)</strong></p></li>
+<li><p>spkit.eeg.ATAR_1Ch(…)</p></li>
+<li><p>spkit.eeg.ATAR_mCh(…)</p></li>
+<li><p>spkit.eeg.ATAR_mCh_noParallel(…)</p></li>
+</ul>
+<p><em><strong>spkit.eeg.ATAR_1Ch</strong></em> is for single channel input signal x of shape (n,), where as, <em><strong>spkit.eeg.ATAR_mCh</strong></em> is for multichannel signal X with shape (n,ch), which uses joblib for parallel processing of multi channels. For some OS, joblib raise an error of <em><strong>BrokenProcessPool</strong></em>, in that case use  <em><strong>spkit.eeg.ATAR_mCh_noParallel</strong></em>, which is same as <em><strong>spkit.eeg.ATAR_mCh</strong></em>, except parallel processing. Alternatively, use <em><strong>spkit.eeg.ATAR_1Ch</strong></em> with for loop for each channel.</p>
+<p><em><strong>spkit.eeg.ATAR</strong></em> is generalized function, this will call <em><strong>spkit.eeg.ATAR_1Ch</strong></em> is single channel is passed else <em><strong>spkit.eeg.ATAR_mCh</strong></em> and with <em>use_joblib</em> agrument, it can be set to try parallel processing, else will process each channel individually. We recommed to use <em><strong>spkit.eeg.ATAR</strong></em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -516,31 +560,12 @@ Parameters:</p>
 </div>
 </div>
 </div>
-<div class="section" id="api-from-spkit">
-<h2>API from spkit<a class="headerlink" href="#api-from-spkit" title="Permalink to this headline">¶</a></h2>
-<p>There are three functions in <strong>spkit.eeg</strong> for <strong>ATAR algorithm</strong></p>
-<ul class="simple">
-<li><p><strong>spkit.eeg.ATAR(…)</strong></p></li>
-<li><p>spkit.eeg.ATAR_1Ch(…)</p></li>
-<li><p>spkit.eeg.ATAR_mCh(…)</p></li>
-<li><p>spkit.eeg.ATAR_mCh_noParallel(…)</p></li>
-</ul>
-<p><em><strong>sp.eeg.ATAR_1Ch</strong></em> is for single channel input signal x of shape (n,), where as, <em><strong>sp.eeg.ATAR_mCh</strong></em> is for multichannel signal X with shape (n,ch), which uses joblib for parallel processing of multi channels. For some OS, joblib raise an error of <em><strong>BrokenProcessPool</strong></em>, in that case use  <em><strong>sp.eeg.ATAR_mCh_noParallel</strong></em>, which is same as <em><strong>sp.eeg.ATAR_mCh</strong></em>, except parallel processing. Alternatively, use <em><strong>sp.eeg.ATAR_1Ch</strong></em> with for loop for each channel.</p>
-<p><em><strong>spkit.eeg.ATAR</strong></em> is generalized function, this will call <em><strong>sp.eeg.ATAR_1Ch</strong></em> is single channel is passed else <em><strong>sp.eeg.ATAR_mCh</strong></em> and with <em>use_joblib</em> agrument, it can be set to try parallel processing, else will process each channel individually. We recommed to use <em><strong>spkit.eeg.ATAR</strong></em>.</p>
-</div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="import-eeg-sample-data">
 <h1>Import EEG sample data<a class="headerlink" href="#import-eeg-sample-data" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spkit.data</span> <span class="kn">import</span> <span class="n">load_data</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span><span class="n">ch_names</span> <span class="o">=</span> <span class="n">load_data</span><span class="o">.</span><span class="n">eegSample</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span><span class="n">ch_names</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">load_data</span><span class="o">.</span><span class="n">eegSample</span><span class="p">()</span>
 <span class="n">fs</span> <span class="o">=</span> <span class="mi">128</span>
 </pre></div>
 </div>
@@ -583,7 +608,7 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_12_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_12_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_10_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_10_0.png" />
 </div>
 </div>
 </div>
@@ -628,8 +653,8 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_16_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_16_0.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_16_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_16_1.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_14_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_14_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_14_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_14_1.png" />
 </div>
 </div>
 </div>
@@ -671,8 +696,8 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_19_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_19_0.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_19_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_19_1.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_17_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_17_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_17_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_17_1.png" />
 </div>
 </div>
 </div>
@@ -714,8 +739,8 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_0.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_1.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_20_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_20_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_20_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_20_1.png" />
 </div>
 </div>
 </div>
@@ -727,6 +752,54 @@ Parameters:</p>
 
 <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">betas</span><span class="p">:</span>
     <span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="n">b</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">)</span>
+    <span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$\beta=$&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_1.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_2.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_2.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_3.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_3.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_4.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_4.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_5.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_5.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_6.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_6.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_7.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_7.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_8.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_8.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_9.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_9.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_10.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_10.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_11.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_11.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_12.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_12.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_13.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_13.png" />
+</div>
+</div>
+</div>
+<div class="section" id="tuning-beta-with-elim">
+<h2>Tuning <span class="math notranslate nohighlight">\(\beta\)</span> with ‘elim’<a class="headerlink" href="#tuning-beta-with-elim" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.02</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">betas</span><span class="p">:</span>
+    <span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="n">b</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">)</span>
     <span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -764,54 +837,6 @@ Parameters:</p>
 <img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_11.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_11.png" />
 <img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_12.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_12.png" />
 <img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_13.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_13.png" />
-</div>
-</div>
-</div>
-<div class="section" id="tuning-beta-with-elim">
-<h2>Tuning <span class="math notranslate nohighlight">\(\beta\)</span> with ‘elim’<a class="headerlink" href="#tuning-beta-with-elim" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.02</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">betas</span><span class="p">:</span>
-    <span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="n">b</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">)</span>
-    <span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$\beta=$&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_0.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_1.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_2.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_2.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_3.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_3.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_4.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_4.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_5.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_5.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_6.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_6.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_7.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_7.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_8.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_8.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_9.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_9.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_10.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_10.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_11.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_11.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_12.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_12.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_13.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_13.png" />
 </div>
 </div>
 </div>
@@ -868,8 +893,8 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_28_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_28_0.png" />
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_28_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_28_1.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_1.png" />
 </div>
 </div>
 </div>
@@ -902,7 +927,7 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_31_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_31_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_29_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_29_0.png" />
 </div>
 </div>
 </div>
@@ -934,7 +959,7 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_34_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_34_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_32_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_32_0.png" />
 </div>
 </div>
 </div>
@@ -965,7 +990,7 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_36_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_36_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_34_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_34_0.png" />
 </div>
 </div>
 </div>
@@ -997,7 +1022,7 @@ Parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_39_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_39_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_37_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_37_0.png" />
 </div>
 </div>
 </div>
@@ -1206,7 +1231,21 @@ ATAR_mCh(X, wv=&#39;db3&#39;, winsize=128, thr_method=&#39;ipr&#39;, IPR=[25, 75
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Dispersion_Entropy_1_demo_EEG.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Dispersion Entropy</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../core/cwt.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Complex Continues Wavelets</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

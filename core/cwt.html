@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Complex Wavelets &#8212; Signal Processing Toolkit</title>
+    <title>Complex Continues Wavelets &#8212; Signal Processing Toolkit</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contacts" href="../info/contacts.html" />
-    <link rel="prev" title="ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG" href="atar_algo.html" />
+    <link rel="next" title="Wavelet Filtering" href="../notebooks/Wavelet_Filtering_1_demo.html" />
+    <link rel="prev" title="ATAR: Automatic and Tunable Artifact Removal Algorithm" href="../notebooks/ATAR_Algorithm_EEG_Artifact_Removal.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +94,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../index.html">
-   Installation:
+   Signal Processing Toolkit
   </a>
  </li>
 </ul>
@@ -105,13 +105,42 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="atar_algo.html">
-   ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG
+  <a class="reference internal" href="../notebooks/Dispersion_Entropy_1_demo_EEG.html">
+   Dispersion Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/ATAR_Algorithm_EEG_Artifact_Removal.html">
+   ATAR: Automatic and Tunable Artifact Removal Algorithm
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Complex Wavelets
+   Complex Continues Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/Wavelet_Filtering_1_demo.html">
+   Wavelet Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.html">
+   Ramanujan Filter Banks for period estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_from_signal.html">
+   Ramanujan Filter Banks with a signal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_with_sparse_penalty.html">
+   Ramanujan Dictionary  - with
+   <span class="math notranslate nohighlight">
+    \(L_1\)
+   </span>
+   sparse penalty
   </a>
  </li>
  <li class="toctree-l1">
@@ -176,11 +205,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/Nikeshbajaj/spkit"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/Nikeshbajaj/Notebooks"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/Nikeshbajaj/spkit/issues/new?title=Issue%20on%20page%20%2Fcore/cwt.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/Nikeshbajaj/Notebooks/issues/new?title=Issue%20on%20page%20%2Fcore/cwt.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -322,7 +351,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Complex Wavelets</h1>
+                <h1>Complex Continues Wavelets</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -447,8 +476,8 @@
             
               <div>
                 
-  <div class="section" id="complex-wavelets">
-<h1>Complex Wavelets<a class="headerlink" href="#complex-wavelets" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="complex-continues-wavelets">
+<h1>Complex Continues Wavelets<a class="headerlink" href="#complex-continues-wavelets" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="notebook">
 <h2>Notebook<a class="headerlink" href="#notebook" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
@@ -464,8 +493,11 @@
 <span class="kn">import</span> <span class="nn">spkit</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;spkit-version &#39;</span><span class="p">,</span> <span class="n">spkit</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">spkit</span> <span class="k">as</span> <span class="nn">sp</span>
+
 <span class="kn">from</span> <span class="nn">spkit.cwt</span> <span class="kn">import</span> <span class="n">ScalogramCWT</span>
 <span class="kn">from</span> <span class="nn">spkit.cwt</span> <span class="kn">import</span> <span class="n">compare_cwt_example</span>
+
+<span class="c1"># if above two lines raise error, use sp.cwt.ScalogramCWT and sp.cwt.compare_cwt_example instead</span>
 
 <span class="n">x</span><span class="p">,</span><span class="n">fs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">load_data</span><span class="o">.</span><span class="n">eegSample_1ch</span><span class="p">()</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">fs</span>
@@ -788,17 +820,17 @@ w &amp;= 2\pi f\end{split}\]</div>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="atar_algo.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../notebooks/ATAR_Algorithm_EEG_Artifact_Removal.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG</p>
+            <p class="prev-next-title">ATAR: Automatic and Tunable Artifact Removal Algorithm</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../info/contacts.html" title="next page">
+    <a class='right-next' id="next-link" href="../notebooks/Wavelet_Filtering_1_demo.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Contacts</p>
+        <p class="prev-next-title">Wavelet Filtering</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

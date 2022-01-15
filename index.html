@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Installation: &#8212; Signal Processing Toolkit</title>
+    <title>Signal Processing Toolkit &#8212; Signal Processing Toolkit</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -91,7 +91,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   Installation:
+   Signal Processing Toolkit
   </a>
  </li>
 </ul>
@@ -102,13 +102,42 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="core/atar_algo.html">
-   ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG
+  <a class="reference internal" href="notebooks/Dispersion_Entropy_1_demo_EEG.html">
+   Dispersion Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ATAR_Algorithm_EEG_Artifact_Removal.html">
+   ATAR: Automatic and Tunable Artifact Removal Algorithm
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="core/cwt.html">
-   Complex Wavelets
+   Complex Continues Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/Wavelet_Filtering_1_demo.html">
+   Wavelet Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.html">
+   Ramanujan Filter Banks for period estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_from_signal.html">
+   Ramanujan Filter Banks with a signal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_with_sparse_penalty.html">
+   Ramanujan Dictionary  - with
+   <span class="math notranslate nohighlight">
+    \(L_1\)
+   </span>
+   sparse penalty
   </a>
  </li>
  <li class="toctree-l1">
@@ -173,11 +202,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/Nikeshbajaj/spkit"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/Nikeshbajaj/Notebooks"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/Nikeshbajaj/spkit/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/Nikeshbajaj/Notebooks/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -203,17 +232,17 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
    Installation:
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#build-from-source">
    Build from source
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#links">
    Links:
   </a>
@@ -228,7 +257,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Installation:</h1>
+                <h1>Signal Processing Toolkit</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -238,17 +267,17 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
    Installation:
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#build-from-source">
    Build from source
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#links">
    Links:
   </a>
@@ -268,27 +297,28 @@
 <div align="center">
 <h1>Signal Processing Toolkit</h1>
 </div>
-<!--# Signal Processing Toolkit -->
+<div class="section" id="signal-processing-toolkit">
+<h1>Signal Processing Toolkit<a class="headerlink" href="#signal-processing-toolkit" title="Permalink to this headline">¶</a></h1>
 <p>This python library is focused on signal processing techniques and some of machine learnign algorithms with richer visualization plots to understand better. The most signal processing routines are easily available in scipy, however the newest and some of the sophisticated algorithms and approaches are not always easily available. Here we tend to put them together with more focus on visualizing aspect to get the deeper understanding to the approach.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The latest version of spkit is 0.0.9.4</p>
 </div>
 <div class="section" id="installation">
-<h1>Installation:<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<h2>Installation:<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">spkit</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="build-from-source">
-<h1>Build from source<a class="headerlink" href="#build-from-source" title="Permalink to this headline">¶</a></h1>
+<h2>Build from source<a class="headerlink" href="#build-from-source" title="Permalink to this headline">¶</a></h2>
 <p>Download the repository or clone it with git, after cd in directory build it from source with</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="links">
-<h1>Links:<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h1>
+<h2>Links:<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
 <ul class="simple">
 <li><p><strong>Homepage</strong>   - <a class="reference external" href="http://spkit.github.io">http://spkit.github.io</a></p></li>
@@ -296,6 +326,7 @@
 <li><p><strong>Github</strong>	    - <a class="reference external" href="https://github.com/Nikeshbajaj/spkit">https://github.com/Nikeshbajaj/spkit</a></p></li>
 <li><p><strong>PyPi-project</strong>  - <a class="reference external" href="https://pypi.org/project/spkit">https://pypi.org/project/spkit</a></p></li>
 </ul>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>

@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramanujan Filter Banks for period estimation &#8212; Signal Processing Toolkit</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ramanujan Filter Banks with a signal" href="Ramanujan_Filter_Banks_for_Period_Estimation_from_signal.html" />
+    <link rel="prev" title="Wavelet Filtering" href="Wavelet_Filtering_1_demo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Signal Processing Toolkit</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Signal Processing Toolkit
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/informationtheory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Dispersion_Entropy_1_demo_EEG.html">
+   Dispersion Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ATAR_Algorithm_EEG_Artifact_Removal.html">
+   ATAR: Automatic and Tunable Artifact Removal Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/cwt.html">
+   Complex Continues Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Wavelet_Filtering_1_demo.html">
+   Wavelet Filtering
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Ramanujan Filter Banks for period estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_from_signal.html">
+   Ramanujan Filter Banks with a signal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_with_sparse_penalty.html">
+   Ramanujan Dictionary  - with
+   <span class="math notranslate nohighlight">
+    \(L_1\)
+   </span>
+   sparse penalty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../info/contacts.html">
+   Contacts
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Nikeshbajaj/Notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Nikeshbajaj/Notebooks/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Nikeshbajaj/Notebooks/HEAD?labpath=spkit/v2/gh/Nikeshbajaj/Notebooks/master?urlpath=lab/tree/spkit/notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Nikeshbajaj/Notebooks/blob/master/spkit/notebooks/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-demo-1">
+   Example demo 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-demo-2">
+   Example demo 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-demo-2-with-diff-periods">
+   Example demo 2 with diff periods
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Ramanujan Filter Banks for period estimation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-demo-1">
+   Example demo 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-demo-2">
+   Example demo 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-demo-2-with-diff-periods">
+   Example demo 2 with diff periods
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <h1>Ramanujan Filter Banks<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Ramanujan-Filter-Banks-for-period-estimation" data-toc-modified-id="Ramanujan-Filter-Banks-for-period-estimation-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Ramanujan Filter Banks for period estimation</a></span><ul class="toc-item"><li><span><a href="#Example-demo-1" data-toc-modified-id="Example-demo-1-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Example demo 1</a></span></li><li><span><a href="#Example-demo-2" data-toc-modified-id="Example-demo-2-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Example demo 2</a></span></li><li><span><a href="#Example-demo-2-with-diff-periods" data-toc-modified-id="Example-demo-2-with-diff-periods-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Example demo 2 with diff periods</a></span></li></ul></li></ul></div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">scipy</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">linalg</span> <span class="k">as</span> <span class="n">LA</span>
+<span class="kn">import</span> <span class="nn">spkit</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.0.9.4&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="ramanujan-filter-banks-for-period-estimation">
+<h1>Ramanujan Filter Banks for period estimation<a class="headerlink" href="#ramanujan-filter-banks-for-period-estimation" title="Permalink to this headline">¶</a></h1>
+<p>Ramanujan Filter Banks [1] are based on the arithmetic-functions in number theory and due to interesting properties, this can be used to estimate the period of repeating patterns in a short sequence, where classical DFT fails to recognize.</p>
+<p>The approach is based on Ramanujan sum [2], defined as:</p>
+<div class="math notranslate nohighlight">
+\[c_q(n) = \sum_{k=1, gcd(k,q)=1}^{q} W_q^{kn} + \sum_{k=1, gcd(k,q)=1}^{q} W_q^{-kn}\]</div>
+<p>where <span class="math notranslate nohighlight">\(W_q  = e^{j2\pi/q}\)</span></p>
+<p>#TODO - details</p>
+<p><strong>References:</strong></p>
+<p>[1] Vaidyanathan, Palghat P., and Srikanth Tenneti. “Srinivasa Ramanujan and signal-processing problems.” Philosophical Transactions of the Royal Society A 378.2163 (2020): 20180446.
+[2] Ramanujan, Srinivasa. “On certain trigonometrical sums and their applications in the theory of numbers.” Trans. Cambridge Philos. Soc 22.13 (1918): 259-276.</p>
+<div class="section" id="example-demo-1">
+<h2>Example demo 1<a class="headerlink" href="#example-demo-1" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">RFB_example_1</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">SNR</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_5_0.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_5_0.png" />
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_5_1.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_5_1.png" />
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_5_2.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_5_2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [10  5 11 18 17 16 15 14 13 12]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-demo-2">
+<h2>Example demo 2<a class="headerlink" href="#example-demo-2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">RFB_example_2</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">signal_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">SNR</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_0.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_0.png" />
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_1.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [ 3  7 11  2  6  5 10 15  4  8]
+</pre></div>
+</div>
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_3.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [ 3  2 89 65 61 67 52 71 70 79]
+</pre></div>
+</div>
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_5.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [ 3  7  2  6  5 11  4  8 10 13]
+</pre></div>
+</div>
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_7.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_7.png" />
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_8.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [ 3 11  7 28 50 90 34 26 27 29]
+</pre></div>
+</div>
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_10.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_7_10.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-demo-2-with-diff-periods">
+<h2>Example demo 2 with diff periods<a class="headerlink" href="#example-demo-2-with-diff-periods" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">RFB_example_2</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">14</span><span class="p">],</span> <span class="n">signal_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">SNR</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_0.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_0.png" />
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_1.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [ 3  2  6  7 10  5 11 13 15 16]
+</pre></div>
+</div>
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_3.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [ 2  3 89 65 67 68 64 61 79 87]
+</pre></div>
+</div>
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_5.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [ 3  2  6  7  5 11 10 13  9  8]
+</pre></div>
+</div>
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_7.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_7.png" />
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_8.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>top 10 periods:  [ 7  3 14 90 34 26 27 28 29 30]
+</pre></div>
+</div>
+<img alt="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_10.png" src="../_images/Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples_9_10.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">RFB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function RFB in module core.ramanujam_methods:
+
+RFB(x, Pmax=10, Rcq=10, Rav=2, Th=0.2, Penalty=None, return_filters=False, apply_averaging=True)
+    Ramanujan Filter Banks for Estimation and Tracking of Periodicity
+    -----------------------------------------------------------------
+    
+    input
+    ------
+    x    = 1d array, sequence of signal
+    Pmax = the largest expected period.
+    Rcq  = Number of repeats in each Ramanujan filter
+    Rav  = Number of repeats in each averaging filter
+    Th   = Outputs of the RFB are thresholded to zero for all values less than Th*max(output)
+    Penalt = penalty for each period shape=(len(Pmax)),
+             If None, then set to 1, means no penalty
+    
+    output
+    ------
+    y = 2d array of shape = (len(x),Pmax), time vs period matrix, normalized
+    
+    if return_filters==True: also returns
+    
+    FR = list of Ramanujan Filters
+    FA = list of Averaging Filters
+    
+    References:
+    [1] S.V. Tenneti and P. P. Vaidyanathan, &quot;Ramanujan Filter Banks for Estimation
+    and Tracking of Periodicity&quot;, Proc. IEEE Int. Conf. Acoust.
+    Speech, and Signal Proc., Brisbane, April 2015.
+    
+    [2] P.P. Vaidyanathan and S.V. Tenneti, &quot;Properties of Ramanujan Filter Banks&quot;,
+    Proc. European Signal Processing Conference, France, August 2015.
+    
+    Python impletation is done by using matlab code version from
+    - http://systems.caltech.edu/dsp/students/srikanth/Ramanujan/
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Wavelet_Filtering_1_demo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Wavelet Filtering</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Ramanujan_Filter_Banks_for_Period_Estimation_from_signal.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ramanujan Filter Banks with a signal</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Nikesh Bajaj<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

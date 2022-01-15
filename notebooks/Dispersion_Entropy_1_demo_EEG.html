@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dispersion Entropy &#8212; Signal Processing Toolkit</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ATAR: Automatic and Tunable Artifact Removal Algorithm" href="ATAR_Algorithm_EEG_Artifact_Removal.html" />
+    <link rel="prev" title="Information Theory" href="../core/informationtheory.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Signal Processing Toolkit</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Signal Processing Toolkit
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/informationtheory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Dispersion Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ATAR_Algorithm_EEG_Artifact_Removal.html">
+   ATAR: Automatic and Tunable Artifact Removal Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/cwt.html">
+   Complex Continues Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Wavelet_Filtering_1_demo.html">
+   Wavelet Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_Demo_examples.html">
+   Ramanujan Filter Banks for period estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_from_signal.html">
+   Ramanujan Filter Banks with a signal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ramanujan_Filter_Banks_for_Period_Estimation_with_sparse_penalty.html">
+   Ramanujan Dictionary  - with
+   <span class="math notranslate nohighlight">
+    \(L_1\)
+   </span>
+   sparse penalty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../info/contacts.html">
+   Contacts
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/Dispersion_Entropy_1_demo_EEG.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Nikeshbajaj/Notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Nikeshbajaj/Notebooks/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Dispersion_Entropy_1_demo_EEG.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Nikeshbajaj/Notebooks/HEAD?labpath=spkit/v2/gh/Nikeshbajaj/Notebooks/master?urlpath=lab/tree/spkit/notebooks/Dispersion_Entropy_1_demo_EEG.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Nikeshbajaj/Notebooks/blob/master/spkit/notebooks/Dispersion_Entropy_1_demo_EEG.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Dispersion Entropy
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eeg-sample-signal">
+   EEG Sample Signal
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Dispersion Entropy
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embeding-diamension-2">
+     embeding diamension =2
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#probability-of-all-the-patterns-found">
+       Probability of all the patterns found
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pattern-dictionary">
+       Pattern dictionary
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#top-10-patterns">
+       top 10 patterns
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedding-diamension-4">
+     embedding diamension 4
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#top-10-non-constant-pattern">
+       top-10, non-constant pattern
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispersion-entropy-with-sliding-window">
+   Dispersion Entropy with sliding window
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispersion-entropy-multiscale">
+   Dispersion Entropy multiscale
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispersion-entropy-multiscale-refined">
+   Dispersion Entropy multiscale-refined
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation">
+   Documentation
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Dispersion Entropy</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Dispersion Entropy
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eeg-sample-signal">
+   EEG Sample Signal
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Dispersion Entropy
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embeding-diamension-2">
+     embeding diamension =2
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#probability-of-all-the-patterns-found">
+       Probability of all the patterns found
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pattern-dictionary">
+       Pattern dictionary
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#top-10-patterns">
+       top 10 patterns
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedding-diamension-4">
+     embedding diamension 4
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#top-10-non-constant-pattern">
+       top-10, non-constant pattern
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispersion-entropy-with-sliding-window">
+   Dispersion Entropy with sliding window
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispersion-entropy-multiscale">
+   Dispersion Entropy multiscale
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispersion-entropy-multiscale-refined">
+   Dispersion Entropy multiscale-refined
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation">
+   Documentation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <h1>Dispersion Entropy<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Dispersion-Entropy" data-toc-modified-id="Dispersion-Entropy-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Dispersion Entropy</a></span></li><li><span><a href="#EEG-Sample-Signal" data-toc-modified-id="EEG-Sample-Signal-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>EEG Sample Signal</a></span></li><li><span><a href="#Dispersion-Entropy" data-toc-modified-id="Dispersion-Entropy-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Dispersion Entropy</a></span><ul class="toc-item"><li><span><a href="#embeding-diamension-=2" data-toc-modified-id="embeding-diamension-=2-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>embeding diamension =2</a></span><ul class="toc-item"><li><span><a href="#Probability-of-all-the-patterns-found" data-toc-modified-id="Probability-of-all-the-patterns-found-3.1.1"><span class="toc-item-num">3.1.1&nbsp;&nbsp;</span>Probability of all the patterns found</a></span></li><li><span><a href="#Pattern-dictionary" data-toc-modified-id="Pattern-dictionary-3.1.2"><span class="toc-item-num">3.1.2&nbsp;&nbsp;</span>Pattern dictionary</a></span></li><li><span><a href="#top-10-patterns" data-toc-modified-id="top-10-patterns-3.1.3"><span class="toc-item-num">3.1.3&nbsp;&nbsp;</span>top 10 patterns</a></span></li></ul></li><li><span><a href="#embedding-diamension-4" data-toc-modified-id="embedding-diamension-4-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>embedding diamension 4</a></span><ul class="toc-item"><li><span><a href="#top-10,-non-constant-pattern" data-toc-modified-id="top-10,-non-constant-pattern-3.2.1"><span class="toc-item-num">3.2.1&nbsp;&nbsp;</span>top-10, non-constant pattern</a></span></li></ul></li></ul></li><li><span><a href="#Dispersion-Entropy-with-sliding-window" data-toc-modified-id="Dispersion-Entropy-with-sliding-window-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Dispersion Entropy with sliding window</a></span></li><li><span><a href="#Dispersion-Entropy-multiscale" data-toc-modified-id="Dispersion-Entropy-multiscale-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Dispersion Entropy multiscale</a></span></li><li><span><a href="#Dispersion-Entropy-multiscale-refined" data-toc-modified-id="Dispersion-Entropy-multiscale-refined-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>Dispersion Entropy multiscale-refined</a></span></li><li><span><a href="#Documentation" data-toc-modified-id="Documentation-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>Documentation</a></span></li></ul></div><div class="tex2jax_ignore mathjax_ignore section" id="dispersion-entropy">
+<h1>Dispersion Entropy<a class="headerlink" href="#dispersion-entropy" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">scipy</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">linalg</span> <span class="k">as</span> <span class="n">LA</span>
+<span class="kn">import</span> <span class="nn">spkit</span> <span class="k">as</span> <span class="nn">sp</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="eeg-sample-signal">
+<h1>EEG Sample Signal<a class="headerlink" href="#eeg-sample-signal" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span><span class="n">ch_names</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">load_data</span><span class="o">.</span><span class="n">eegSample</span><span class="p">()</span>
+<span class="n">fs</span><span class="o">=</span><span class="mi">128</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2048, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xf</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_X</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">band</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">],</span><span class="n">btype</span><span class="o">=</span><span class="s1">&#39;bandpass&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Xf</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2048, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">fs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">Xf</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Dispersion_Entropy_1_demo_EEG_6_0.png" src="../_images/Dispersion_Entropy_1_demo_EEG_6_0.png" />
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>Dispersion Entropy<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">dispersion_entropy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function core.infomation_theory_advance.dispersion_entropy(x, classes=10, scale=1, emb_dim=2, delay=1, mapping_type=&#39;cdf&#39;, de_normalize=False, A=100, Mu=100, return_all=False, warns=True)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xi</span> <span class="o">=</span> <span class="n">Xf</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># only one channel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="embeding-diamension-2">
+<h2>embeding diamension =2<a class="headerlink" href="#embeding-diamension-2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">de</span><span class="p">,</span><span class="n">prob</span><span class="p">,</span><span class="n">patterns_dict</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">dispersion_entropy</span><span class="p">(</span><span class="n">Xi</span><span class="p">,</span><span class="n">classes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">return_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">de</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.271749287746759
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="probability-of-all-the-patterns-found">
+<h3>Probability of all the patterns found<a class="headerlink" href="#probability-of-all-the-patterns-found" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;pattern #&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Dispersion_Entropy_1_demo_EEG_13_0.png" src="../_images/Dispersion_Entropy_1_demo_EEG_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="pattern-dictionary">
+<h3>Pattern dictionary<a class="headerlink" href="#pattern-dictionary" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patterns_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(1, 1): 18,
+ (1, 2): 2,
+ (1, 4): 1,
+ (2, 1): 2,
+ (2, 2): 23,
+ (2, 3): 2,
+ (2, 5): 1,
+ (3, 1): 1,
+ (3, 2): 2,
+ (3, 3): 37,
+ (3, 4): 14,
+ (4, 2): 1,
+ (4, 3): 14,
+ (4, 4): 133,
+ (4, 5): 44,
+ (4, 9): 1,
+ (5, 3): 1,
+ (5, 4): 44,
+ (5, 5): 586,
+ (5, 6): 95,
+ (5, 7): 2,
+ (5, 8): 1,
+ (6, 5): 97,
+ (6, 6): 585,
+ (6, 7): 41,
+ (7, 5): 2,
+ (7, 6): 42,
+ (7, 7): 110,
+ (7, 8): 12,
+ (8, 4): 1,
+ (8, 7): 13,
+ (8, 8): 42,
+ (8, 9): 3,
+ (9, 8): 4,
+ (9, 9): 14,
+ (9, 10): 3,
+ (10, 9): 3,
+ (10, 10): 50}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="top-10-patterns">
+<h3>top 10 patterns<a class="headerlink" href="#top-10-patterns" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">+</span><span class="p">[</span><span class="n">patterns_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">patterns_dict</span><span class="p">])</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">PP</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">PP</span><span class="p">[</span><span class="n">idx</span><span class="p">[:</span><span class="mi">10</span><span class="p">],:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 5,  5],
+       [ 6,  6],
+       [ 4,  4],
+       [ 7,  7],
+       [ 6,  5],
+       [ 5,  6],
+       [10, 10],
+       [ 4,  5],
+       [ 5,  4],
+       [ 8,  8]], dtype=int64)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="embedding-diamension-4">
+<h2>embedding diamension 4<a class="headerlink" href="#embedding-diamension-4" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">de</span><span class="p">,</span><span class="n">prob</span><span class="p">,</span><span class="n">patterns_dict</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">dispersion_entropy</span><span class="p">(</span><span class="n">Xi</span><span class="p">,</span><span class="n">classes</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">return_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">de</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.866373893367994
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">+</span><span class="p">[</span><span class="n">patterns_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">patterns_dict</span><span class="p">])</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">PP</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">PP</span><span class="p">[</span><span class="n">idx</span><span class="p">[:</span><span class="mi">10</span><span class="p">],:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[10, 10, 10, 10],
+       [11, 11, 11, 11],
+       [12, 12, 12, 12],
+       [ 9,  9,  9,  9],
+       [11, 11, 10, 10],
+       [10, 10, 11, 11],
+       [11, 11, 11, 10],
+       [10, 10, 10, 11],
+       [10, 11, 11, 11],
+       [11, 10, 10, 10]], dtype=int64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="top-10-non-constant-pattern">
+<h3>top-10, non-constant pattern<a class="headerlink" href="#top-10-non-constant-pattern" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ptop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">PP</span><span class="p">[</span><span class="n">idx</span><span class="p">,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">idx2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Ptop</span><span class="o">-</span><span class="n">Ptop</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]),</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ptop</span><span class="p">[</span><span class="n">idx2</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;--o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Dispersion_Entropy_1_demo_EEG_22_0.png" src="../_images/Dispersion_Entropy_1_demo_EEG_22_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ptop</span><span class="p">[</span><span class="n">idx2</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="c1">#plt.yticks([])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Dispersion_Entropy_1_demo_EEG_23_0.png" src="../_images/Dispersion_Entropy_1_demo_EEG_23_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="dispersion-entropy-with-sliding-window">
+<h1>Dispersion Entropy with sliding window<a class="headerlink" href="#dispersion-entropy-with-sliding-window" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">de_temporal</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">win</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">win</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;</span><span class="n">Xi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">de</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">dispersion_entropy</span><span class="p">(</span><span class="n">Xi</span><span class="p">[</span><span class="n">win</span><span class="p">],</span><span class="n">classes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">return_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">win</span><span class="o">+=</span><span class="mi">16</span>
+    <span class="n">de_temporal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">de</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">de_temporal</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">de_temporal</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;window&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Dispersion Entropy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Dispersion_Entropy_1_demo_EEG_26_0.png" src="../_images/Dispersion_Entropy_1_demo_EEG_26_0.png" />
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="dispersion-entropy-multiscale">
+<h1>Dispersion Entropy multiscale<a class="headerlink" href="#dispersion-entropy-multiscale" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">scl</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">]:</span>
+    <span class="n">de</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">dispersion_entropy</span><span class="p">(</span><span class="n">Xi</span><span class="p">,</span><span class="n">classes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scl</span><span class="p">,</span> <span class="n">emb_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">return_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sacle: </span><span class="si">{</span><span class="n">scl</span><span class="si">}</span><span class="s1">, </span><span class="se">\t</span><span class="s1">: DE: </span><span class="si">{</span><span class="n">de</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sacle: 1, 	: DE: 2.271749287746759
+Sacle: 2, 	: DE: 2.5456280627759336
+Sacle: 3, 	: DE: 2.6984938704051236
+Sacle: 5, 	: DE: 2.682837351130069
+Sacle: 10, 	: DE: 2.5585556625642476
+Sacle: 20, 	: DE: 2.7480275694000103
+Sacle: 30, 	: DE: 2.4767472897625806
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="dispersion-entropy-multiscale-refined">
+<h1>Dispersion Entropy multiscale-refined<a class="headerlink" href="#dispersion-entropy-multiscale-refined" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">de</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">dispersion_entropy_multiscale_refined</span><span class="p">(</span><span class="n">Xi</span><span class="p">,</span><span class="n">classes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">emb_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">de</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.543855087400606
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">dispersion_entropy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function dispersion_entropy in module core.infomation_theory_advance:
+
+dispersion_entropy(x, classes=10, scale=1, emb_dim=2, delay=1, mapping_type=&#39;cdf&#39;, de_normalize=False, A=100, Mu=100, return_all=False, warns=True)
+    Calculate dispersion entropy of signal x (multiscale)
+    ----------------------------------------
+    input:
+    -----
+    x      : input signal x - 1d-array of shape=(n,)
+    classes: number of classes - (levels of quantization of amplitude) (default=10)
+    emb_dim: embedding dimension,
+    delay  : time delay (default=1)
+    scale  : downsampled signal with low resolution  (default=1)  - for multipscale dispersion entropy
+    mapping_type: mapping method to discretizing signal (default=&#39;cdf&#39;)
+           : options = {&#39;cdf&#39;,&#39;a-law&#39;,&#39;mu-law&#39;,&#39;fd&#39;}
+    A  : factor for A-Law- if mapping_type = &#39;a-law&#39;
+    Mu : factor for μ-Law- if mapping_type = &#39;mu-law&#39;
+    
+    de_normalize: (bool) if to normalize the entropy, to make it comparable with different signal with different
+                 number of classes and embeding dimensions. default=0 (False) - no normalizations
+    
+    if de_normalize=1:
+       - dispersion entropy is normalized by log(Npp); Npp=total possible patterns. This is classical
+         way to normalize entropy since   max{H(x)}&lt;=np.log(N) for possible outcomes. However, in case of
+         limited length of signal (sequence), it would be not be possible to get all the possible patterns
+         and might be incorrect to normalize by log(Npp), when len(x)&lt;Npp or len(x)&lt;classes**emb_dim.
+         For example, given signal x with discretized length of 2048 samples, if classes=10 and emb_dim=4,
+         the number of possible patterns Npp = 10000, which can never be found in sequence length &lt; 10000+4.
+         To fix this, the alternative way to nomalize is recommended as follow.
+       - select this when classes**emb_dim &lt; (N-(emb_dim-1)*delay)
+    
+      de_normalize=2: (recommended for classes**emb_dim &gt; len(x)/scale)
+       - dispersion entropy is normalized by log(Npf); Npf [= (len(x)-(emb_dim - 1) * delay)]
+         the total  number of patterns founds in given sequence. This is much better normalizing factor.
+         In worst case (lack of better word) - for a very random signal, all Npf patterns could be different
+         and unique, achieving the maximum entropy and for a constant signal, all Npf will be same achieving to
+         zero entropy
+       - select this when classes**emb_dim &gt; (N-(emb_dim-1)*delay)
+    
+      de_normalize=3:
+       - dispersion entropy is normalized by log(Nup); number of total unique patterns (NOT RECOMMENDED)
+         -  it does not make sense (not to me, at least)
+    
+      de_normalize=4:
+       - auto select normalizing factor
+       - if classes**emb_dim &gt; (N-(emb_dim-1)*delay), then de_normalize=2
+       - if classes**emb_dim &gt; (N-(emb_dim-1)*delay), then de_normalize=2
+    
+    output
+    ------
+    disp_entr  : dispersion entropy of the signal
+    prob       : probability distribution of patterns
+    
+    if return_all True - also returns
+    
+    patterns_dict: disctionary of patterns and respective frequencies
+    x_discrete   : discretized signal x
+    (Npf,Npp,Nup): Npf - total_patterns_found, Npp - total_patterns_possible) and Nup - total unique patterns found
+                 : Npf number of total patterns in discretized signal (not total unique patterns)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">dispersion_entropy_multiscale_refined</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function dispersion_entropy_multiscale_refined in module core.infomation_theory_advance:
+
+dispersion_entropy_multiscale_refined(x, classes=10, scales=[1, 2, 3, 4, 5], emb_dim=2, delay=1, mapping_type=&#39;cdf&#39;, de_normalize=False, A=100, Mu=100, return_all=False, warns=True)
+    Calculate multiscale refined dispersion entropy of signal x
+    -----------------------------------------------------------
+    
+    compute dispersion entropy at different scales (defined by argument - &#39;scales&#39;) and combining the patterns
+    found at different scales to compute final dispersion entropy
+    
+    input:
+    -----
+    x       : input signal x - 1d-array of shape=(n,)
+    classes : number of classes - (levels of quantization of amplitude) (default=10)
+    emb_dim : embedding dimension,
+    delay   : time delay (default=1)
+    scales  : list or 1d array of scales to be considered to refine the dispersion entropy
+    
+    mapping_type: mapping method to discretizing signal (default=&#39;cdf&#39;)
+           : options = {&#39;cdf&#39;,&#39;a-law&#39;,&#39;mu-law&#39;,&#39;fd&#39;}
+    A  : factor for A-Law- if mapping_type = &#39;a-law&#39;
+    Mu : factor for μ-Law- if mapping_type = &#39;mu-law&#39;
+    
+    de_normalize: (bool) if to normalize the entropy, to make it comparable with different signal with different
+                 number of classes and embeding dimensions. default=0 (False) - no normalizations
+    
+    if de_normalize=1:
+       - dispersion entropy is normalized by log(Npp); Npp=total possible patterns. This is classical
+         way to normalize entropy since   max{H(x)}&lt;=np.log(N) for possible outcomes. However, in case of
+         limited length of signal (sequence), it would be not be possible to get all the possible patterns
+         and might be incorrect to normalize by log(Npp), when len(x)&lt;Npp or len(x)&lt;classes**emb_dim.
+         For example, given signal x with discretized length of 2048 samples, if classes=10 and emb_dim=4,
+         the number of possible patterns Npp = 10000, which can never be found in sequence length &lt; 10000+4.
+         To fix this, the alternative way to nomalize is recommended as follow.
+    
+      de_normalize=2: (recommended for classes**emb_dim &gt; len(x)/scale)
+       - dispersion entropy is normalized by log(Npf); Npf [= (len(x)-(emb_dim - 1) * delay)]
+         the total  number of patterns founds in given sequence. This is much better normalizing factor.
+         In worst case (lack of better word) - for a very random signal, all Npf patterns could be different
+         and unique, achieving the maximum entropy and for a constant signal, all Npf will be same achieving to
+         zero entropy
+      de_normalize=3:
+       - dispersion entropy is normalized by log(Nup); number of total unique patterns (NOT RECOMMENDED)
+         -  it does not make sense (not to me, at least)
+    
+    output
+    ------
+    disp_entr  : dispersion entropy of the signal
+    prob       : probability distribution of patterns
+    
+    if return_all True - also returns
+    
+    patterns_dict: disctionary of patterns and respective frequencies
+    x_discrete   : discretized signal x
+    (Npf,Npp,Nup): Npf - total_patterns_found, Npp - total_patterns_possible) and Nup - total unique patterns found
+                 : Npf number of total patterns in discretized signal (not total unique patterns)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../core/informationtheory.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Information Theory</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ATAR_Algorithm_EEG_Artifact_Removal.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ATAR: Automatic and Tunable Artifact Removal Algorithm</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Nikesh Bajaj<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
