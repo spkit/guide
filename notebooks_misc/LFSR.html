@@ -1,0 +1,989 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-bit LFSR &#8212; Signal Processing Toolkit</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Signal Processing Toolkit</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Installation:
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/informationtheory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/atar_algo.html">
+   ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/cwt.html">
+   Complex Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../info/contacts.html">
+   Contacts
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks_misc/LFSR.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Nikeshbajaj/spkit"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Nikeshbajaj/spkit/issues/new?title=Issue%20on%20page%20%2Fnotebooks_misc/LFSR.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Nikeshbajaj/spkit/master?urlpath=tree/docs/notebooks_misc/LFSR.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   5-bit LFSR
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#with-custom-feedback-and-initial-state">
+   with custom feedback and initial state
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#print-at-each-step">
+   Print at each step
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-default-counter-start-zero-true">
+     with default counter_start_zero = True
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-counter-start-zero-false">
+     with counter_start_zero = False
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   23-bit LFSR
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-properties-of-lfsr">
+   Testing properties of LFSR
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#all-tests-together">
+     All tests together
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#individual-test-for-a-period">
+     Individual test for a period
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-properties-for-non-primitive-polynomial">
+     Testing properties for non-primitive polynomial
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-a-list-of-feedback-polynomials-for-m-bit-lfsr">
+   Get a list of feedback polynomials for m-bit LFSR
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-feedback-polynomial-in-between">
+   Changing feedback polynomial in between
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a5-1-gsm-stream-cipher">
+   A5/1 GSM Stream Cipher
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-lfsr-capabilities">
+   Full LFSR Capabilities
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>5-bit LFSR</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   5-bit LFSR
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#with-custom-feedback-and-initial-state">
+   with custom feedback and initial state
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#print-at-each-step">
+   Print at each step
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-default-counter-start-zero-true">
+     with default counter_start_zero = True
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-counter-start-zero-false">
+     with counter_start_zero = False
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   23-bit LFSR
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-properties-of-lfsr">
+   Testing properties of LFSR
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#all-tests-together">
+     All tests together
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#individual-test-for-a-period">
+     Individual test for a period
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-properties-for-non-primitive-polynomial">
+     Testing properties for non-primitive polynomial
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-a-list-of-feedback-polynomials-for-m-bit-lfsr">
+   Get a list of feedback polynomials for m-bit LFSR
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-feedback-polynomial-in-between">
+   Changing feedback polynomial in between
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a5-1-gsm-stream-cipher">
+   A5/1 GSM Stream Cipher
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-lfsr-capabilities">
+   Full LFSR Capabilities
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <h1>Linear Feedback Shift Register<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#5-bit-LFSR" data-toc-modified-id="5-bit-LFSR-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>5-bit LFSR</a></span></li><li><span><a href="#with-custom-feedback-and-initial-state" data-toc-modified-id="with-custom-feedback-and-initial-state-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>with custom feedback and initial state</a></span></li><li><span><a href="#Print-at-each-step" data-toc-modified-id="Print-at-each-step-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Print at each step</a></span><ul class="toc-item"><li><span><a href="#with-default-counter_start_zero-=-True" data-toc-modified-id="with-default-counter_start_zero-=-True-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>with default counter_start_zero = True</a></span></li><li><span><a href="#with-counter_start_zero-=-False" data-toc-modified-id="with-counter_start_zero-=-False-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>with counter_start_zero = False</a></span></li></ul></li><li><span><a href="#23-bit-LFSR" data-toc-modified-id="23-bit-LFSR-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>23-bit LFSR</a></span></li><li><span><a href="#Testing-properties-of-LFSR" data-toc-modified-id="Testing-properties-of-LFSR-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Testing properties of LFSR</a></span><ul class="toc-item"><li><span><a href="#All-tests-together" data-toc-modified-id="All-tests-together-5.1"><span class="toc-item-num">5.1&nbsp;&nbsp;</span>All tests together</a></span></li><li><span><a href="#Individual-test-for-a-period" data-toc-modified-id="Individual-test-for-a-period-5.2"><span class="toc-item-num">5.2&nbsp;&nbsp;</span>Individual test for a period</a></span></li><li><span><a href="#Testing-properties-for-non-primitive-polynomial" data-toc-modified-id="Testing-properties-for-non-primitive-polynomial-5.3"><span class="toc-item-num">5.3&nbsp;&nbsp;</span>Testing properties for non-primitive polynomial</a></span></li></ul></li><li><span><a href="#Get-a-list-of-feedback-polynomials-for-m-bit-LFSR" data-toc-modified-id="Get-a-list-of-feedback-polynomials-for-m-bit-LFSR-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>Get a list of feedback polynomials for m-bit LFSR</a></span></li><li><span><a href="#Changing-feedback-polynomial-in-between" data-toc-modified-id="Changing-feedback-polynomial-in-between-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>Changing feedback polynomial in between</a></span></li><li><span><a href="#A5/1-GSM-Stream-Cipher" data-toc-modified-id="A5/1-GSM-Stream-Cipher-8"><span class="toc-item-num">8&nbsp;&nbsp;</span>A5/1 GSM Stream Cipher</a></span></li><li><span><a href="#Full-LFSR-Capabilities" data-toc-modified-id="Full-LFSR-Capabilities-9"><span class="toc-item-num">9&nbsp;&nbsp;</span>Full LFSR Capabilities</a></span></li></ul></div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">spkit</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;spkit version : &#39;</span><span class="p">,</span><span class="n">spkit</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">spkit.pylfsr</span> <span class="kn">import</span> <span class="n">LFSR</span>
+
+<span class="c1">#or from pylfsr import LFSR (if you installed pylfsr==1.0.5)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>spkit version :  0.0.9.4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="bit-lfsr">
+<h1>5-bit LFSR<a class="headerlink" href="#bit-lfsr" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">()</span>
+<span class="n">L</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 bit LFSR with feedback polynomial  x^5 + x^2 + 1
+Expected Period (if polynomial is primitive) =  31
+Current :
+ State        :  [1 1 1 1 1]
+ Count        :  0
+ Output bit   :  -1
+ feedback bit :  -1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">L</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 bit LFSR with feedback polynomial  x^5 + x^2 + 1
+Expected Period (if polynomial is primitive) =  31
+Current :
+ State        :  [0 1 1 1 1]
+ Count        :  1
+ Output bit   :  1
+ feedback bit :  0
+ Output Sequence 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 bit LFSR with feedback polynomial  x^5 + x^2 + 1
+Expected Period (if polynomial is primitive) =  31
+Current :
+ State        :  [0 0 1 0 0]
+ Count        :  11
+ Output bit   :  1
+ feedback bit :  0
+ Output Sequence 11111001101
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">seq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="with-custom-feedback-and-initial-state">
+<h1>with custom feedback and initial state<a class="headerlink" href="#with-custom-feedback-and-initial-state" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">,</span><span class="n">initstate</span> <span class="o">=</span><span class="n">state</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">tempseq</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tempseq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 bit LFSR with feedback polynomial  x^5 + x^4 + x^3 + x^2 + 1
+Expected Period (if polynomial is primitive) =  31
+Current :
+ State        :  [0 0 0 1 0]
+ Count        :  0
+ Output bit   :  -1
+ feedback bit :  -1
+S:  [0 0 0 1 0]
+S:  [1 0 0 0 1]
+S:  [1 1 0 0 0]
+S:  [1 1 1 0 0]
+S:  [0 1 1 1 0]
+S:  [1 0 1 1 1]
+S:  [1 1 0 1 1]
+S:  [1 1 1 0 1]
+S:  [1 1 1 1 0]
+S:  [1 1 1 1 1]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 0, 0, 1, 1, 1, 0, 1])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="print-at-each-step">
+<h1>Print at each step<a class="headerlink" href="#print-at-each-step" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="with-default-counter-start-zero-true">
+<h2>with default counter_start_zero = True<a class="headerlink" href="#with-default-counter-start-zero-true" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;count </span><span class="se">\t</span><span class="s1"> state </span><span class="se">\t\t</span><span class="s1">outbit </span><span class="se">\t</span><span class="s1"> seq&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">count</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">state</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">outbit</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">seq</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">L</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output: &#39;</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count 	 state 		outbit 	 seq
+--------------------------------------------------
+0	[1 1 1]		-1	[-1]
+1	[0 1 1]		1	[1]
+2	[0 0 1]		1	[1 1]
+3	[1 0 0]		1	[1 1 1]
+4	[0 1 0]		0	[1 1 1 0]
+5	[1 0 1]		0	[1 1 1 0 0]
+6	[1 1 0]		1	[1 1 1 0 0 1]
+7	[1 1 1]		0	[1 1 1 0 0 1 0]
+8	[0 1 1]		1	[1 1 1 0 0 1 0 1]
+9	[0 0 1]		1	[1 1 1 0 0 1 0 1 1]
+10	[1 0 0]		1	[1 1 1 0 0 1 0 1 1 1]
+11	[0 1 0]		0	[1 1 1 0 0 1 0 1 1 1 0]
+12	[1 0 1]		0	[1 1 1 0 0 1 0 1 1 1 0 0]
+13	[1 1 0]		1	[1 1 1 0 0 1 0 1 1 1 0 0 1]
+14	[1 1 1]		0	[1 1 1 0 0 1 0 1 1 1 0 0 1 0]
+--------------------------------------------------
+Output:  [1 1 1 0 0 1 0 1 1 1 0 0 1 0 1]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="with-counter-start-zero-false">
+<h2>with counter_start_zero = False<a class="headerlink" href="#with-counter-start-zero-false" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">,</span><span class="n">counter_start_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;count </span><span class="se">\t</span><span class="s1"> state </span><span class="se">\t\t</span><span class="s1">outbit </span><span class="se">\t</span><span class="s1"> seq&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">14</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">count</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">state</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">outbit</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">seq</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">L</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output: &#39;</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count 	 state 		outbit 	 seq
+--------------------------------------------------
+1	[1 1 1]		1	[1]
+2	[0 1 1]		1	[1 1]
+3	[0 0 1]		1	[1 1 1]
+4	[1 0 0]		1	[1 1 1 0]
+5	[0 1 0]		0	[1 1 1 0 0]
+6	[1 0 1]		0	[1 1 1 0 0 1]
+7	[1 1 0]		1	[1 1 1 0 0 1 0]
+8	[1 1 1]		0	[1 1 1 0 0 1 0 1]
+9	[0 1 1]		1	[1 1 1 0 0 1 0 1 1]
+10	[0 0 1]		1	[1 1 1 0 0 1 0 1 1 1]
+11	[1 0 0]		1	[1 1 1 0 0 1 0 1 1 1 0]
+12	[0 1 0]		0	[1 1 1 0 0 1 0 1 1 1 0 0]
+13	[1 0 1]		0	[1 1 1 0 0 1 0 1 1 1 0 0 1]
+14	[1 1 0]		1	[1 1 1 0 0 1 0 1 1 1 0 0 1 0]
+--------------------------------------------------
+Output:  [1 1 1 0 0 1 0 1 1 1 0 0 1 0 1]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>23-bit LFSR<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">19</span><span class="p">]</span>
+<span class="n">L1</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">,</span><span class="n">initstate</span> <span class="o">=</span><span class="s1">&#39;ones&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">L1</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23 bit LFSR with feedback polynomial  x^23 + x^19 + 1
+Expected Period (if polynomial is primitive) =  8388607
+Current :
+ State        :  [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+ Count        :  0
+ Output bit   :  -1
+ feedback bit :  -1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span> <span class="o">=</span> <span class="n">L1</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">seq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+       1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
+       1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0,
+       1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="testing-properties-of-lfsr">
+<h1>Testing properties of LFSR<a class="headerlink" href="#testing-properties-of-lfsr" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="all-tests-together">
+<h2>All tests together<a class="headerlink" href="#all-tests-together" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">)</span>
+<span class="n">result</span>  <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">test_properties</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Periodicity
+------------------
+ - Expected period = 2^M-1 = 31
+ - Pass?:  True
+
+2. Balance Property
+-------------------
+ - Number of 1s = Number of 0s+1 (in a period): (N1s,N0s) =  (16, 15)
+ - Pass?:  True
+
+3. Runlength Property
+-------------------
+ - Number of Runs in a period should be of specific order, e.g. [4,2,1,1]
+ - Runs:  [8 4 2 1 1]
+ - Pass?:  True
+
+4. Autocorrelation Property
+-------------------
+ - Autocorrelation of a period should be noise-like, specifically, 1 at k=0, -1/m everywhere else
+ - Rxx(k):  [ 1.         -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806  1.         -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806 -0.03225806
+ -0.03225806 -0.03225806  1.        ]
+</pre></div>
+</div>
+<img alt="../_images/LFSR_17_1.png" src="../_images/LFSR_17_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> - Pass?:  True
+
+
+
+==================
+Passed all the tests
+==================
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="individual-test-for-a-period">
+<h2>Individual test for a period<a class="headerlink" href="#individual-test-for-a-period" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">getFullPeriod</span><span class="p">()</span> <span class="c1"># </span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0,
+       0, 1, 0, 0, 1, 0, 1, 1, 0])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">balance_property</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True, (16, 15))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">runlength_property</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True, array([8, 4, 2, 1, 1]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">autocorr_property</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">copy</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-properties-for-non-primitive-polynomial">
+<h2>Testing properties for non-primitive polynomial<a class="headerlink" href="#testing-properties-for-non-primitive-polynomial" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">test_properties</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Periodicity
+------------------
+ - Expected period = 2^M-1 = 31
+ - Pass?:  False
+
+2. Balance Property
+-------------------
+ - Number of 1s = Number of 0s+1 (in a period): (N1s,N0s) =  (17, 14)
+ - Pass?:  False
+
+3. Runlength Property
+-------------------
+ - Number of Runs in a period should be of specific order, e.g. [4,2,1,1]
+ - Runs:  [10  2  1  1  2]
+ - Pass?:  False
+
+4. Autocorrelation Property
+-------------------
+ - Autocorrelation of a period should be noise-like, specifically, 1 at k=0, -1/m everywhere else
+ - Rxx(k):  [ 1.         -0.03225806  0.22580645 -0.16129032  0.09677419 -0.03225806
+ -0.03225806 -0.29032258  0.22580645 -0.16129032  0.35483871 -0.03225806
+ -0.03225806 -0.03225806 -0.29032258 -0.16129032 -0.16129032 -0.29032258
+ -0.03225806 -0.03225806 -0.03225806  0.35483871 -0.16129032  0.22580645
+ -0.29032258 -0.03225806 -0.03225806  0.09677419 -0.16129032  0.22580645
+ -0.03225806  1.         -0.03225806  0.22580645 -0.16129032  0.09677419
+ -0.03225806 -0.03225806 -0.29032258  0.22580645 -0.16129032  0.35483871
+ -0.03225806 -0.03225806 -0.03225806 -0.29032258 -0.16129032 -0.16129032
+ -0.29032258 -0.03225806 -0.03225806 -0.03225806  0.35483871 -0.16129032
+  0.22580645 -0.29032258 -0.03225806 -0.03225806  0.09677419 -0.16129032
+  0.22580645 -0.03225806  1.        ]
+</pre></div>
+</div>
+<img alt="../_images/LFSR_24_1.png" src="../_images/LFSR_24_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> - Pass?:  False
+
+
+
+==================
+Failed one or more tests, check if feedback polynomial is primitive polynomial
+==================
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="get-a-list-of-feedback-polynomials-for-m-bit-lfsr">
+<h1>Get a list of feedback polynomials for m-bit LFSR<a class="headerlink" href="#get-a-list-of-feedback-polynomials-for-m-bit-lfsr" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">()</span>
+
+<span class="c1"># list of 5-bit feedback polynomials</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">get_fpolyList</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">fpoly</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[5, 2], [5, 4, 2, 1], [5, 4, 3, 2]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of all feedback polynomials as a dictionary</span>
+<span class="n">fpolyDict</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">get_fpolyList</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="changing-feedback-polynomial-in-between">
+<h1>Changing feedback polynomial in between<a class="headerlink" href="#changing-feedback-polynomial-in-between" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">19</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">,</span><span class="n">initstate</span> <span class="o">=</span><span class="s1">&#39;ones&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">seq0</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Change to [23,14]</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">changeFpoly</span><span class="p">(</span><span class="n">newfpoly</span> <span class="o">=</span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">14</span><span class="p">],</span><span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">seq1</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Change to [23,9]</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Change after 20 clocks</span>
+<span class="n">L</span><span class="o">.</span><span class="n">changeFpoly</span><span class="p">(</span><span class="n">newfpoly</span> <span class="o">=</span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span><span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">seq2</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">L</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23 bit LFSR with feedback polynomial  x^23 + x^19 + 1
+Expected Period (if polynomial is primitive) =  8388607
+Current :
+ State        :  [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1]
+ Count        :  20
+ Output bit   :  1
+ feedback bit :  1
+ Output Sequence 11111111111111111111
+
+Change to [23,14]
+
+23 bit LFSR with feedback polynomial  x^23 + x^14 + 1
+Expected Period (if polynomial is primitive) =  8388607
+Current :
+ State        :  [0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0]
+ Count        :  40
+ Output bit   :  0
+ feedback bit :  0
+ Output Sequence 1111111111111111111111100000000000000000
+
+Change to [23,9]
+
+23 bit LFSR with feedback polynomial  x^23 + x^9 + 1
+Expected Period (if polynomial is primitive) =  8388607
+Current :
+ State        :  [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+ Count        :  60
+ Output bit   :  1
+ feedback bit :  1
+ Output Sequence 111111111111111111111110000000000000000000111100000000001111
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="a5-1-gsm-stream-cipher">
+<h1>A5/1 GSM Stream Cipher<a class="headerlink" href="#a5-1-gsm-stream-cipher" title="Permalink to this headline">¶</a></h1>
+<p>Reference Article: Enhancement of A5/1: <a class="reference external" href="https://doi.org/10.1109/ETNCC.2011.5958486">https://doi.org/10.1109/ETNCC.2011.5958486</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Three LFSRs initialzed with &#39;ones&#39; though they are intialized with encription key</span>
+<span class="n">R1</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">19</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">14</span><span class="p">])</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">R3</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span><span class="mi">21</span><span class="p">])</span>
+
+<span class="c1"># clocking bits</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">R1</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">R1</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">b3</span> <span class="o">=</span> <span class="n">R1</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="full-lfsr-capabilities">
+<h1>Full LFSR Capabilities<a class="headerlink" href="#full-lfsr-capabilities" title="Permalink to this headline">¶</a></h1>
+<p>For full and updated version of LFSR, use <a class="reference external" href="https://pypi.org/project/pylfsr/">pylfsr</a> instead of spkit.pylfsr</p>
+<p>Here is the documentation link - <a class="reference external" href="https://lfsr.readthedocs.io/">pylfsr</a></p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks_misc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Nikesh Bajaj<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

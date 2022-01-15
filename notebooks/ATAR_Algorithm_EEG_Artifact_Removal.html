@@ -1,0 +1,1231 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Import libraries &#8212; Signal Processing Toolkit</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Signal Processing Toolkit</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Installation:
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/informationtheory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/atar_algo.html">
+   ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../core/cwt.html">
+   Complex Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../info/contacts.html">
+   Contacts
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/ATAR_Algorithm_EEG_Artifact_Removal.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Nikeshbajaj/spkit"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Nikeshbajaj/spkit/issues/new?title=Issue%20on%20page%20%2Fnotebooks/ATAR_Algorithm_EEG_Artifact_Removal.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Nikeshbajaj/spkit/master?urlpath=tree/docs/notebooks/ATAR_Algorithm_EEG_Artifact_Removal.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Import libraries
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#api-from-spkit">
+     API from spkit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-eeg-sample-data">
+   Import EEG sample data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filter-with-highpass">
+     Filter with highpass
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-atar-algorithm">
+   Applying ATAR Algorithm
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#soft-thresholding-default-settings-optmode-soft-and-beta-0-1">
+     Soft Thresholding: default settings: OptMode=’soft’ and
+     <span class="math notranslate nohighlight">
+      \(\beta=0.1\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-attenuation">
+     Linear Attenuation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elimination">
+     Elimination
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuning-beta-with-soft-controlling-the-aggressiveness">
+     Tuning
+     <span class="math notranslate nohighlight">
+      \(\beta\)
+     </span>
+     with ‘soft’ : Controlling the aggressiveness
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuning-beta-with-elim">
+     Tuning
+     <span class="math notranslate nohighlight">
+      \(\beta\)
+     </span>
+     with ‘elim’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-settings">
+   Other settings
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-wavelet-function">
+     Changing wavelet function
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-upper-and-lower-bounds-k-1-k-2">
+     Changing upper and lower bounds:
+     <span class="math notranslate nohighlight">
+      \(k_1\)
+     </span>
+     ,
+     <span class="math notranslate nohighlight">
+      \(k_2\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-ipr-interpercentile-range">
+     Changing IPR -  Interpercentile range
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-fix-threshold-theta-alpha-300-to-all-the-windows">
+     Using the fix threshold
+     <span class="math notranslate nohighlight">
+      \(\theta_\alpha=300\)
+     </span>
+     ,  to all the windows
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-window-length-5-sec">
+     Changing window length (5 sec)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#doc">
+   Doc
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Import libraries</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Import libraries
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#api-from-spkit">
+     API from spkit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-eeg-sample-data">
+   Import EEG sample data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filter-with-highpass">
+     Filter with highpass
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-atar-algorithm">
+   Applying ATAR Algorithm
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#soft-thresholding-default-settings-optmode-soft-and-beta-0-1">
+     Soft Thresholding: default settings: OptMode=’soft’ and
+     <span class="math notranslate nohighlight">
+      \(\beta=0.1\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-attenuation">
+     Linear Attenuation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elimination">
+     Elimination
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuning-beta-with-soft-controlling-the-aggressiveness">
+     Tuning
+     <span class="math notranslate nohighlight">
+      \(\beta\)
+     </span>
+     with ‘soft’ : Controlling the aggressiveness
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuning-beta-with-elim">
+     Tuning
+     <span class="math notranslate nohighlight">
+      \(\beta\)
+     </span>
+     with ‘elim’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-settings">
+   Other settings
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-wavelet-function">
+     Changing wavelet function
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-upper-and-lower-bounds-k-1-k-2">
+     Changing upper and lower bounds:
+     <span class="math notranslate nohighlight">
+      \(k_1\)
+     </span>
+     ,
+     <span class="math notranslate nohighlight">
+      \(k_2\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-ipr-interpercentile-range">
+     Changing IPR -  Interpercentile range
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-fix-threshold-theta-alpha-300-to-all-the-windows">
+     Using the fix threshold
+     <span class="math notranslate nohighlight">
+      \(\theta_\alpha=300\)
+     </span>
+     ,  to all the windows
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-window-length-5-sec">
+     Changing window length (5 sec)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#doc">
+   Doc
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <h1>ATAR: Automatic and Tunable Artifact Removal Algorithm<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Import-libraries" data-toc-modified-id="Import-libraries-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Import libraries</a></span><ul class="toc-item"><li><span><a href="#API-from-spkit" data-toc-modified-id="API-from-spkit-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>API from spkit</a></span></li></ul></li><li><span><a href="#Import-EEG-sample-data" data-toc-modified-id="Import-EEG-sample-data-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Import EEG sample data</a></span><ul class="toc-item"><li><span><a href="#Filter-with-highpass" data-toc-modified-id="Filter-with-highpass-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Filter with highpass</a></span></li></ul></li><li><span><a href="#Applying-ATAR-Algorithm" data-toc-modified-id="Applying-ATAR-Algorithm-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Applying ATAR Algorithm</a></span><ul class="toc-item"><li><span><a href="#Soft-Thresholding:-default-settings:-OptMode='soft'-and-$\beta=0.1$" data-toc-modified-id="Soft-Thresholding:-default-settings:-OptMode='soft'-and-$\beta=0.1$-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>Soft Thresholding: default settings: OptMode='soft' and $\beta=0.1$</a></span></li><li><span><a href="#Linear-Attenuation" data-toc-modified-id="Linear-Attenuation-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>Linear Attenuation</a></span></li><li><span><a href="#Elimination" data-toc-modified-id="Elimination-3.3"><span class="toc-item-num">3.3&nbsp;&nbsp;</span>Elimination</a></span></li><li><span><a href="#Tuning-$\beta$-with-'soft'-:-Controlling-the-aggressiveness" data-toc-modified-id="Tuning-$\beta$-with-'soft'-:-Controlling-the-aggressiveness-3.4"><span class="toc-item-num">3.4&nbsp;&nbsp;</span>Tuning $\beta$ with 'soft' : Controlling the aggressiveness</a></span></li><li><span><a href="#Tuning-$\beta$-with-'elim'" data-toc-modified-id="Tuning-$\beta$-with-'elim'-3.5"><span class="toc-item-num">3.5&nbsp;&nbsp;</span>Tuning $\beta$ with 'elim'</a></span></li></ul></li><li><span><a href="#Other-settings" data-toc-modified-id="Other-settings-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Other settings</a></span><ul class="toc-item"><li><span><a href="#Changing-wavelet-function" data-toc-modified-id="Changing-wavelet-function-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Changing wavelet function</a></span></li><li><span><a href="#Changing-upper-and-lower-bounds:-$k_1$,-$k_2$" data-toc-modified-id="Changing-upper-and-lower-bounds:-$k_1$,-$k_2$-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Changing upper and lower bounds: $k_1$, $k_2$</a></span></li><li><span><a href="#Changing-IPR----Interpercentile-range" data-toc-modified-id="Changing-IPR----Interpercentile-range-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Changing IPR -  Interpercentile range</a></span></li><li><span><a href="#Using-the-fix-threshold-$\theta_\alpha=300$,--to-all-the-windows" data-toc-modified-id="Using-the-fix-threshold-$\theta_\alpha=300$,--to-all-the-windows-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Using the fix threshold $\theta_\alpha=300$,  to all the windows</a></span></li><li><span><a href="#Changing-window-length-(5-sec)" data-toc-modified-id="Changing-window-length-(5-sec)-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span>Changing window length (5 sec)</a></span></li></ul></li><li><span><a href="#Doc" data-toc-modified-id="Doc-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Doc</a></span></li></ul></div><p><strong>ATAR Algorithm -  Automatic and Tunable Artifact Removal Algorithm for EEG Signal.</strong></p>
+<p>The algorithm is based on wavelet packet decomposion (WPD), the full description of algorithm can be found here <a class="reference external" href="https://doi.org/10.1016/j.bspc.2019.101624">Automatic and Tunable Artifact Removal Algorithm for EEG</a> from the article.</p>
+<p>The algorithm is applied on the given multichannel signal X (n,nch), window wise and reconstructed with overall add method. The defualt window size is set to 1 sec (128 samples). For each window, the threshold <span class="math notranslate nohighlight">\(\theta_\alpha\)</span> is computed and applied to filter the wavelet coefficients.</p>
+<p>There is manily one parameter that can be tuned <span class="math notranslate nohighlight">\(\beta\)</span> with different operating modes and other settings.
+Here is the list of parameters and there simplified meaning given:
+Parameters:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span>: This is a main parameter to tune, highher the value, more aggressive the algorithm to remove the artifacts. By default it is set to 0.1. <span class="math notranslate nohighlight">\(\beta\)</span> is postive float value.</p></li>
+<li><p><em><strong>OptMode</strong></em>: This sets the mode of operation, which decides hoe to remove the artifact. By default it is set to ‘soft’, which means Soft Thresholding, in this mode, rather than removing the pressumed artifact, it is suppressed to the threshold, softly. OptMode=’linAtten’, suppresses the pressumed artifact depending on how far it is from threshold. Finally, the most common mode - Elimination (OptMode=’elim’), which remove the pressumed artifact.</p>
+<ul>
+<li><p>Soft Thresholding and Linear Attenuation require addition parameters to set the associated thresholds which are by default set to bf=2, gf=0.8.</p></li>
+</ul>
+</li>
+<li><p><em><strong>wv=db3</strong></em>: Wavelet funtion, by default set to db3, could be any of [‘db3’…..’db38’, ‘sym2…..sym20’, ‘coif1…..coif17’, ‘bior1.1….bior6.8’, ‘rbio1.1…rbio6.8’, ‘dmey’]</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_1\)</span>, <span class="math notranslate nohighlight">\(k_2\)</span>: Lower and upper bounds on threshold <span class="math notranslate nohighlight">\(\theta_\alpha\)</span>.</p></li>
+<li><p><em><strong>IPR=[25,75]</strong></em>: interpercentile range, range used to compute threshold</p></li>
+</ul>
+<div class="tex2jax_ignore mathjax_ignore section" id="import-libraries">
+<h1>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">spkit</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.0.9.4&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="api-from-spkit">
+<h2>API from spkit<a class="headerlink" href="#api-from-spkit" title="Permalink to this headline">¶</a></h2>
+<p>There are three functions in <strong>spkit.eeg</strong> for <strong>ATAR algorithm</strong></p>
+<ul class="simple">
+<li><p><strong>spkit.eeg.ATAR(…)</strong></p></li>
+<li><p>spkit.eeg.ATAR_1Ch(…)</p></li>
+<li><p>spkit.eeg.ATAR_mCh(…)</p></li>
+<li><p>spkit.eeg.ATAR_mCh_noParallel(…)</p></li>
+</ul>
+<p><em><strong>sp.eeg.ATAR_1Ch</strong></em> is for single channel input signal x of shape (n,), where as, <em><strong>sp.eeg.ATAR_mCh</strong></em> is for multichannel signal X with shape (n,ch), which uses joblib for parallel processing of multi channels. For some OS, joblib raise an error of <em><strong>BrokenProcessPool</strong></em>, in that case use  <em><strong>sp.eeg.ATAR_mCh_noParallel</strong></em>, which is same as <em><strong>sp.eeg.ATAR_mCh</strong></em>, except parallel processing. Alternatively, use <em><strong>sp.eeg.ATAR_1Ch</strong></em> with for loop for each channel.</p>
+<p><em><strong>spkit.eeg.ATAR</strong></em> is generalized function, this will call <em><strong>sp.eeg.ATAR_1Ch</strong></em> is single channel is passed else <em><strong>sp.eeg.ATAR_mCh</strong></em> and with <em>use_joblib</em> agrument, it can be set to try parallel processing, else will process each channel individually. We recommed to use <em><strong>spkit.eeg.ATAR</strong></em>.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="import-eeg-sample-data">
+<h1>Import EEG sample data<a class="headerlink" href="#import-eeg-sample-data" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spkit.data</span> <span class="kn">import</span> <span class="n">load_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span><span class="n">ch_names</span> <span class="o">=</span> <span class="n">load_data</span><span class="o">.</span><span class="n">eegSample</span><span class="p">()</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">128</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#help(sp.filter_X)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="filter-with-highpass">
+<h2>Filter with highpass<a class="headerlink" href="#filter-with-highpass" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xf</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_X</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">band</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;highpass&#39;</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Xf</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2048, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">fs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">Xf</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf: 14 channel - EEG Signal (filtered)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_12_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_12_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="applying-atar-algorithm">
+<h1>Applying ATAR Algorithm<a class="headerlink" href="#applying-atar-algorithm" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="soft-thresholding-default-settings-optmode-soft-and-beta-0-1">
+<h2>Soft Thresholding: default settings: OptMode=’soft’ and <span class="math notranslate nohighlight">\(\beta=0.1\)</span><a class="headerlink" href="#soft-thresholding-default-settings-optmode-soft-and-beta-0-1" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2048, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_16_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_16_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_16_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_16_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="linear-attenuation">
+<h2>Linear Attenuation<a class="headerlink" href="#linear-attenuation" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;linAtten&#39;</span><span class="p">)</span>
+<span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2048, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_19_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_19_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_19_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_19_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="elimination">
+<h2>Elimination<a class="headerlink" href="#elimination" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">)</span>
+<span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2048, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_22_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="tuning-beta-with-soft-controlling-the-aggressiveness">
+<h2>Tuning <span class="math notranslate nohighlight">\(\beta\)</span> with ‘soft’ : Controlling the aggressiveness<a class="headerlink" href="#tuning-beta-with-soft-controlling-the-aggressiveness" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.02</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">betas</span><span class="p">:</span>
+    <span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="n">b</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">)</span>
+    <span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$\beta=$&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_1.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_2.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_2.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_3.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_3.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_4.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_4.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_5.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_5.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_6.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_6.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_7.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_7.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_8.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_8.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_9.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_9.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_10.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_10.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_11.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_11.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_12.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_12.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_13.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_24_13.png" />
+</div>
+</div>
+</div>
+<div class="section" id="tuning-beta-with-elim">
+<h2>Tuning <span class="math notranslate nohighlight">\(\beta\)</span> with ‘elim’<a class="headerlink" href="#tuning-beta-with-elim" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.02</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">betas</span><span class="p">:</span>
+    <span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="n">b</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">)</span>
+    <span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$\beta=$&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_1.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_2.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_2.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_3.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_3.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_4.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_4.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_5.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_5.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_6.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_6.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_7.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_7.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_8.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_8.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_9.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_9.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_10.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_10.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_11.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_11.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_12.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_12.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_13.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_26_13.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="other-settings">
+<h1>Other settings<a class="headerlink" href="#other-settings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="changing-wavelet-function">
+<h2>Changing wavelet function<a class="headerlink" href="#changing-wavelet-function" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">wv</span><span class="o">=</span><span class="s1">&#39;db8&#39;</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,)</span>
+<span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$wv=db8$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR_mCh_noParallel</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">wv</span><span class="o">=</span><span class="s1">&#39;db32&#39;</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,)</span>
+<span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$wv=db32$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_28_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_28_0.png" />
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_28_1.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_28_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="changing-upper-and-lower-bounds-k-1-k-2">
+<h2>Changing upper and lower bounds: <span class="math notranslate nohighlight">\(k_1\)</span>, <span class="math notranslate nohighlight">\(k_2\)</span><a class="headerlink" href="#changing-upper-and-lower-bounds-k-1-k-2" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span> are lower and upper bound on the threshold <span class="math notranslate nohighlight">\(\theta_\alpha\)</span>. <span class="math notranslate nohighlight">\(k_1\)</span> is set to 10, which means, the lowest threshold value will be 10, this helps to prevent the removal of entire signal (zeroing out) due to present of high magnitute of artifact. <span class="math notranslate nohighlight">\(k_2\)</span> is largest threshold value, which in terms set the decaying curve of threshold <span class="math notranslate nohighlight">\(\theta_\alpha\)</span>. Increasing k2 will make the removal less aggressive</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">wv</span><span class="o">=</span><span class="s1">&#39;db3&#39;</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">k1</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">XR</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$k_2=200$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_31_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_31_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="changing-ipr-interpercentile-range">
+<h2>Changing IPR -  Interpercentile range<a class="headerlink" href="#changing-ipr-interpercentile-range" title="Permalink to this headline">¶</a></h2>
+<p><strong>IPR is interpercentile range</strong>, which is set to 50% (IPR=[25,75]) as default (inter-quartile range), incresing the range increses the aggressiveness of removing artifacts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">wv</span><span class="o">=</span><span class="s1">&#39;db3&#39;</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">k1</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">IPR</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span><span class="mi">85</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$IPR=[15,85]$~ 70%&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_34_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_34_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="using-the-fix-threshold-theta-alpha-300-to-all-the-windows">
+<h2>Using the fix threshold <span class="math notranslate nohighlight">\(\theta_\alpha=300\)</span>,  to all the windows<a class="headerlink" href="#using-the-fix-threshold-theta-alpha-300-to-all-the-windows" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">wv</span><span class="o">=</span><span class="s1">&#39;db3&#39;</span><span class="p">,</span><span class="n">thr_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">theta_a</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$\theta_\alpha=300$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_36_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_36_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="changing-window-length-5-sec">
+<h2>Changing window length (5 sec)<a class="headerlink" href="#changing-window-length-5-sec" title="Permalink to this headline">¶</a></h2>
+<p><strong>winsize</strong> is be default set to 128 (1 sec), assuming 128 sampling rate, which can be changed as needed. In following example it is changed to 5 sec.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">(</span><span class="n">Xf</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">winsize</span><span class="o">=</span><span class="mi">128</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">OptMode</span><span class="o">=</span><span class="s1">&#39;elim&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">XR</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XR: Corrected Signal: &#39;</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$winsize=5sec$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,(</span><span class="n">Xf</span><span class="o">-</span><span class="n">XR</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span><span class="n">ch_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Xf - XR: Difference (removed signal)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ATAR_Algorithm_EEG_Artifact_Removal_39_0.png" src="../_images/ATAR_Algorithm_EEG_Artifact_Removal_39_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="doc">
+<h1>Doc<a class="headerlink" href="#doc" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function ATAR in module eeg.atar_algorithm:
+
+ATAR(X, wv=&#39;db3&#39;, winsize=128, thr_method=&#39;ipr&#39;, IPR=[25, 75], beta=0.1, k1=10, k2=100, est_wmax=100, theta_a=inf, bf=2, gf=0.8, OptMode=&#39;soft&#39;, wpd_mode=&#39;symmetric&#39;, wpd_maxlevel=None, factor=1.0, verbose=False, window=[&#39;hamming&#39;, True], hopesize=None, ReconMethod=&#39;custom&#39;, packetwise=False, WPD=True, lvl=[], fs=128.0, use_joblib=False)
+    .
+    ATAR: - Automatic and Tunable Artifact Removal Algorithm
+    ========================================================
+    
+    Apply ATAR on short windows of signal (multiple channels - if provided on axis 1:):
+    Signal is decomposed in smaller overlapping windows and reconstructed after correcting using overlap-add method.
+    ------
+    for more details, check:
+    Ref: Bajaj, Nikesh, et al. &quot;Automatic and tunable algorithm for EEG artifact removal using wavelet decomposition with applications in predictive modeling during auditory tasks.&quot; Biomedical Signal Processing and Control 55 (2020): 101624.
+    ----------------
+    
+    input
+    -----
+    X: input multi-channel signal of shape (n,ch)
+    
+    Wavelet family:
+    wv = [&#39;db3&#39;.....&#39;db38&#39;, &#39;sym2.....sym20&#39;, &#39;coif1.....coif17&#39;, &#39;bior1.1....bior6.8&#39;, &#39;rbio1.1...rbio6.8&#39;, &#39;dmey&#39;]
+         :&#39;db3&#39;(default)
+    
+    Threshold Computation method:
+    thr_method : None (default), &#39;ipr&#39;
+           : None: fixed threshold theta_a is applied
+           : ipr : applied with theta_a, bf , gf, beta, k1, k2 and OptMode
+           : theta_b = bf*theta_a
+           : theta_g = gf*theta_a
+    
+    Operating modes:
+    OptMode = [&#39;soft&#39;,&#39;elim&#39;,&#39;linAtten&#39;]
+             : default &#39;soft&#39;
+             : use &#39;elim&#39; with globalgood
+    
+    Wavelet Decomposition modes:
+    wpd_mode = [&#39;zero&#39;, &#39;constant&#39;, &#39;symmetric&#39;, &#39;periodic&#39;, &#39;smooth&#39;, &#39;periodization&#39;]
+                default &#39;symmetric&#39;
+    
+    Reconstruction Method - Overlap-Add method
+    ReconMethod :  None, &#39;custom&#39;, &#39;HamWin&#39;
+    for &#39;custom&#39;: window[0] is used and applied after denoising is window[1] is True else
+    windowing applied before denoising
+    
+    output
+    ------
+    XR: corrected signal of same shape as input X
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR_1Ch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function ATAR_1Ch in module eeg.atar_algorithm:
+
+ATAR_1Ch(x, wv=&#39;db3&#39;, winsize=128, thr_method=&#39;ipr&#39;, IPR=[25, 75], beta=0.1, k1=None, k2=100, est_wmax=100, theta_a=inf, bf=2, gf=0.8, OptMode=&#39;soft&#39;, factor=1.0, wpd_mode=&#39;symmetric&#39;, wpd_maxlevel=None, verbose=False, window=[&#39;hamming&#39;, True], hopesize=None, ReconMethod=&#39;custom&#39;, packetwise=False, WPD=True, lvl=[], fs=128.0)
+    &#39;&#39;
+    ATAR: - Automatic and Tunable Artifact Removal Algorithm
+    ========================================================
+    
+    Apply ATAR on short windows of signal (single channel):
+    
+    Signal is decomposed in smaller overlapping windows and reconstructed after correcting using overlap-add method.
+    
+    ----
+    for more details, check:
+    Ref:  Bajaj, Nikesh, et al. &quot;Automatic and tunable algorithm for EEG artifact removal using wavelet decomposition with applications in predictive modeling during auditory tasks.&quot; Biomedical Signal Processing and Control 55 (2020): 101624.
+    ------------------
+    
+    Wfilter(x,wv=&#39;db3&#39;,method=None,IPR=[25,75],beta=0.1,k1=None,k2 =100,
+     theta_a=np.inf,bf=2,gf=0.8,OptMode =&#39;soft&#39;,factor=1.0,showPlot=False,wpd_mode=&#39;symmetric&#39;,wpd_maxlevel=None)
+    
+    input
+    -----
+    X: input single-channel signal of shape (n,)
+    
+    Threshold Computation method:
+    method : None (default), &#39;ipr&#39;
+           : provided with theta_a, bf , gf
+           : theta_b = bf*theta_a
+           : theta_g = gf*theta_a
+    
+    Operating modes:
+    OptMode = [&#39;soft&#39;,&#39;elim&#39;,&#39;linAtten&#39;]
+             : default &#39;soft&#39;
+             : use &#39;elim&#39; with global
+    
+    Wavelet Decomposition modes:
+    wpd_mode = [&#39;zero&#39;, &#39;constant&#39;, &#39;symmetric&#39;, &#39;periodic&#39;, &#39;smooth&#39;, &#39;periodization&#39;]
+                default &#39;symmetric&#39;
+    
+    Wavelet family:
+    wv = [&#39;db3&#39;.....&#39;db38&#39;, &#39;sym2.....sym20&#39;, &#39;coif1.....coif17&#39;, &#39;bior1.1....bior6.8&#39;, &#39;rbio1.1...rbio6.8&#39;, &#39;dmey&#39;]
+         :&#39;db3&#39;(default)
+    
+    
+    Reconstruction Methon
+    ReconMethod :  None, &#39;custom&#39;, &#39;HamWin&#39;
+    for &#39;custom&#39;: window[0] is used and applied after denoising is window[1] is True else
+    windowing applied before denoising
+    
+    output
+    ------
+    XR: corrected signal of same shape as input X
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">eeg</span><span class="o">.</span><span class="n">ATAR_mCh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function ATAR_mCh in module eeg.atar_algorithm:
+
+ATAR_mCh(X, wv=&#39;db3&#39;, winsize=128, thr_method=&#39;ipr&#39;, IPR=[25, 75], beta=0.1, k1=10, k2=100, est_wmax=100, theta_a=inf, bf=2, gf=0.8, OptMode=&#39;soft&#39;, wpd_mode=&#39;symmetric&#39;, wpd_maxlevel=None, factor=1.0, verbose=False, window=[&#39;hamming&#39;, True], hopesize=None, ReconMethod=&#39;custom&#39;, packetwise=False, WPD=True, lvl=[], fs=128.0, use_joblib=False)
+    .
+    ATAR: - Automatic and Tunable Artifact Removal Algorithm
+    ========================================================
+    Apply ATAR on short windows of signal (multiple channels:):
+    
+    Signal is decomposed in smaller overlapping windows and reconstructed after correcting using overlap-add method.
+    ------
+    for more details, check:
+    Ref: Bajaj, Nikesh, et al. &quot;Automatic and tunable algorithm for EEG artifact removal using wavelet decomposition with applications in predictive modeling during auditory tasks.&quot; Biomedical Signal Processing and Control 55 (2020): 101624.
+    ----------------
+    
+    input
+    -----
+    X: input multi-channel signal of shape (n,ch)
+    
+    Wavelet family:
+    wv = [&#39;db3&#39;.....&#39;db38&#39;, &#39;sym2.....sym20&#39;, &#39;coif1.....coif17&#39;, &#39;bior1.1....bior6.8&#39;, &#39;rbio1.1...rbio6.8&#39;, &#39;dmey&#39;]
+         :&#39;db3&#39;(default)
+    
+    Threshold Computation method:
+    thr_method : None (default), &#39;ipr&#39;
+           : None: fixed threshold theta_a is applied
+           : ipr : applied with theta_a, bf , gf, beta, k1, k2 and OptMode
+           : theta_b = bf*theta_a
+           : theta_g = gf*theta_a
+    
+    Operating modes:
+    OptMode = [&#39;soft&#39;,&#39;elim&#39;,&#39;linAtten&#39;]
+             : default &#39;soft&#39;
+             : use &#39;elim&#39; with globalgood
+    
+    Wavelet Decomposition modes:
+    wpd_mode = [&#39;zero&#39;, &#39;constant&#39;, &#39;symmetric&#39;, &#39;periodic&#39;, &#39;smooth&#39;, &#39;periodization&#39;]
+                default &#39;symmetric&#39;
+    
+    Reconstruction Method - Overlap-Add method
+    ReconMethod :  None, &#39;custom&#39;, &#39;HamWin&#39;
+    for &#39;custom&#39;: window[0] is used and applied after denoising is window[1] is True else
+    windowing applied before denoising
+    
+    output
+    ------
+    XR: corrected signal of same shape as input X
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Nikesh Bajaj<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,826 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complex Wavelets &#8212; Signal Processing Toolkit</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contacts" href="../info/contacts.html" />
+    <link rel="prev" title="ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG" href="atar_algo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Signal Processing Toolkit</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Installation:
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="informationtheory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="atar_algo.html">
+   ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Complex Wavelets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../info/contacts.html">
+   Contacts
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/core/cwt.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Nikeshbajaj/spkit"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Nikeshbajaj/spkit/issues/new?title=Issue%20on%20page%20%2Fcore/cwt.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notebook">
+   Notebook
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     View in Jupyter-Notebook
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-quick-example-to-compare-different-wavelets">
+   A quick example to compare different wavelets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gauss-wavelet">
+   Gauss wavelet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-wavelet-functions">
+     Plot wavelet functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-a-range-of-scale-parameters">
+     With a range of scale parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signal-analysis-eeg">
+     Signal Analysis - EEG
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scalogram-with-default-parameters">
+     Scalogram with default parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-a-range-of-frequency-and-q">
+     With a range of frequency and Q
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-a-plot-of-analysis-wavelets">
+     With a plot of analysis wavelets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#speech">
+     Speech
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#audio">
+     Audio
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#morlet-wavelet">
+   Morlet wavelet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gabor-wavelet">
+   Gabor wavelet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson-wavelet">
+   Poisson wavelet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#type-1-n">
+     #Type 1 (n)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#type-2">
+     #Type 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#type-3-n">
+     #Type 3 (n)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maxican-wavelet">
+   Maxican wavelet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shannon-wavelet">
+   Shannon wavelet
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Complex Wavelets</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notebook">
+   Notebook
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     View in Jupyter-Notebook
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-quick-example-to-compare-different-wavelets">
+   A quick example to compare different wavelets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gauss-wavelet">
+   Gauss wavelet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-wavelet-functions">
+     Plot wavelet functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-a-range-of-scale-parameters">
+     With a range of scale parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signal-analysis-eeg">
+     Signal Analysis - EEG
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scalogram-with-default-parameters">
+     Scalogram with default parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-a-range-of-frequency-and-q">
+     With a range of frequency and Q
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-a-plot-of-analysis-wavelets">
+     With a plot of analysis wavelets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#speech">
+     Speech
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#audio">
+     Audio
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#morlet-wavelet">
+   Morlet wavelet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gabor-wavelet">
+   Gabor wavelet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson-wavelet">
+   Poisson wavelet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#type-1-n">
+     #Type 1 (n)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#type-2">
+     #Type 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#type-3-n">
+     #Type 3 (n)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maxican-wavelet">
+   Maxican wavelet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shannon-wavelet">
+   Shannon wavelet
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="section" id="complex-wavelets">
+<h1>Complex Wavelets<a class="headerlink" href="#complex-wavelets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="notebook">
+<h2>Notebook<a class="headerlink" href="#notebook" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><a class="reference external" href="https://nbviewer.jupyter.org/github/Nikeshbajaj/Notebooks/blob/master/spkit/SP/ScalogramCWT_v0.0.9.2.ipynb">View in Jupyter-Notebook</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<a class="reference external image-reference" href="https://nbviewer.jupyter.org/github/Nikeshbajaj/Notebooks/blob/master/spkit/SP/ScalogramCWT_v0.0.9.2.ipynb"><img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/nav_logo.svg" class="align-right" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/nav_logo.svg" width="200" /></a>
+</div>
+</div>
+<div class="section" id="a-quick-example-to-compare-different-wavelets">
+<h2>A quick example to compare different wavelets<a class="headerlink" href="#a-quick-example-to-compare-different-wavelets" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">spkit</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;spkit-version &#39;</span><span class="p">,</span> <span class="n">spkit</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">spkit</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">spkit.cwt</span> <span class="kn">import</span> <span class="n">ScalogramCWT</span>
+<span class="kn">from</span> <span class="nn">spkit.cwt</span> <span class="kn">import</span> <span class="n">compare_cwt_example</span>
+
+<span class="n">x</span><span class="p">,</span><span class="n">fs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">load_data</span><span class="o">.</span><span class="n">eegSample_1ch</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">fs</span>
+
+<span class="n">compare_cwt_example</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/cwt_2.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/cwt_2.png" />
+<a class="reference external image-reference" href="https://nbviewer.jupyter.org/github/Nikeshbajaj/Notebooks/blob/master/spkit/SP/ScalogramCWT_v0.0.9.2.ipynb"><img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/nav_logo.svg" class="align-right" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/nav_logo.svg" width="100" /></a>
+</div>
+<hr class="docutils" />
+<div class="section" id="gauss-wavelet">
+<h2>Gauss wavelet<a class="headerlink" href="#gauss-wavelet" title="Permalink to this headline">¶</a></h2>
+<p>The Gauss Wavelet function in time and frequency domain are defined as <span class="math notranslate nohighlight">\(\psi(t)\)</span> and <span class="math notranslate nohighlight">\(\psi(f)\)</span> as below;</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\psi(t) &amp;= e^{-a(t-t_0)^{2}} \cdot e^{-2\pi jf_0(t-t_0)}\\
+\psi(f) &amp;= \sqrt{\pi/a}\left( e^{-2\pi jft_0}\cdot e^{-\pi^{2}((f-f_0)^{2})/a}\right)\end{split}\]</div>
+<p><strong>where</strong></p>
+<div class="math notranslate nohighlight">
+\[a = \left( \frac{f_0}{Q} \right)^{2}\]</div>
+<p><strong>Parameters for a Gauss wavelet</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>f0 - center frequency</strong></p></li>
+<li><p><strong>Q  - associated with spread of bandwidth, as a = (f0/Q)^2</strong></p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">spkit</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;spkit-version &#39;</span><span class="p">,</span> <span class="n">spkit</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">spkit</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">spkit.cwt</span> <span class="kn">import</span> <span class="n">ScalogramCWT</span>
+</pre></div>
+</div>
+<p><strong>Parameters for a Gauss wavelet</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>f0 - center frequency</strong></p></li>
+<li><p><strong>Q  - associated with spread of bandwidth, as a = (f0/Q)^2</strong></p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="plot-wavelet-functions">
+<h3>Plot wavelet functions<a class="headerlink" href="#plot-wavelet-functions" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="mi">128</span>                                   <span class="c1">#sampling frequency</span>
+<span class="n">tx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">fs</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>             <span class="c1">#time</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">fs</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="n">fs</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">tx</span><span class="p">))</span>   <span class="c1">#frequency range</span>
+
+<span class="n">f01</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1">#np.linspace(0.1,5,2)[:,None]</span>
+<span class="n">Q1</span>  <span class="o">=</span> <span class="mf">2.5</span>   <span class="c1">#np.linspace(0.1,5,10)[:,None]</span>
+<span class="n">wt1</span><span class="p">,</span><span class="n">wf1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">cwt</span><span class="o">.</span><span class="n">GaussWave</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">fx</span><span class="p">,</span><span class="n">f0</span><span class="o">=</span><span class="n">f01</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">Q1</span><span class="p">)</span>
+
+
+<span class="n">f02</span> <span class="o">=</span> <span class="mi">2</span>    <span class="c1">#np.linspace(0.1,5,2)[:,None]</span>
+<span class="n">Q2</span>  <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1">#np.linspace(0.1,5,10)[:,None]</span>
+<span class="n">wt2</span><span class="p">,</span><span class="n">wf2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">cwt</span><span class="o">.</span><span class="n">GaussWave</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">fx</span><span class="p">,</span><span class="n">f0</span><span class="o">=</span><span class="n">f02</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">Q2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">wt1</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;real&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">wt1</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">tx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">tx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Q=2.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">wf1</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">fx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">fx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">wt2</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;real&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">wt2</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">tx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">tx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Q=0.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">wf2</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">fx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">fx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_1.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_1.png" />
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_2.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_2.png" />
+</div>
+<div class="section" id="with-a-range-of-scale-parameters">
+<h3>With a range of scale parameters<a class="headerlink" href="#with-a-range-of-scale-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+<span class="n">Q</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+<span class="c1">#Q  = 1</span>
+
+<span class="n">wt</span><span class="p">,</span><span class="n">wf</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">cwt</span><span class="o">.</span><span class="n">GaussWave</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">fx</span><span class="p">,</span><span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">Q</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">wt</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">wt</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">tx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">tx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">wf</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">fx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">fx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_3_range.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_3_range.png" />
+</div>
+<div class="section" id="signal-analysis-eeg">
+<h3>Signal Analysis - EEG<a class="headerlink" href="#signal-analysis-eeg" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">fs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">load_data</span><span class="o">.</span><span class="n">eegSample_1ch</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">fs</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;shape &#39;</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/signal_1.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/signal_1.png" />
+</div>
+<div class="section" id="scalogram-with-default-parameters">
+<h3>Scalogram with default parameters<a class="headerlink" href="#scalogram-with-default-parameters" title="Permalink to this headline">¶</a></h3>
+<p>## With default setting of f0 and Q
+# f0 = np.linspace(0.1,10,100)
+# Q = 0.5</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Gauss&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_1.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_1.png" />
+</div>
+<div class="section" id="with-a-range-of-frequency-and-q">
+<h3>With a range of frequency and Q<a class="headerlink" href="#with-a-range-of-frequency-and-q" title="Permalink to this headline">¶</a></h3>
+<p># from 0.1 to 10 Hz of analysis range and 100 points</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Q</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Gauss&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_2.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_2.png" />
+<p># from 5 to 10 Hz of analysis range and 100 points</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Q</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Gauss&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_3.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_3.png" />
+<p># With constant Q</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Q</span>  <span class="o">=</span> <span class="mi">2</span>
+<span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Gauss&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_4.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_4.png" />
+<p># From 12 to 24 Hz</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Q</span>  <span class="o">=</span> <span class="mi">4</span>
+<span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Gauss&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_5.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_5.png" />
+</div>
+<div class="section" id="with-a-plot-of-analysis-wavelets">
+<h3>With a plot of analysis wavelets<a class="headerlink" href="#with-a-plot-of-analysis-wavelets" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Q</span>  <span class="o">=</span> <span class="mi">4</span>
+<span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Gauss&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">PlotW</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_6_1.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_6_1.png" />
+<img alt="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_6_2.png" src="https://raw.githubusercontent.com/spkit/spkit.github.io/master/assets/images/wavelets/gauss_psd_6_2.png" />
+<p>#TODO Speech/Audio Signal</p>
+</div>
+<div class="section" id="speech">
+<h3>Speech<a class="headerlink" href="#speech" title="Permalink to this headline">¶</a></h3>
+<p>#TODO</p>
+</div>
+<div class="section" id="audio">
+<h3>Audio<a class="headerlink" href="#audio" title="Permalink to this headline">¶</a></h3>
+<p>#TODO</p>
+</div>
+</div>
+<div class="section" id="morlet-wavelet">
+<h2>Morlet wavelet<a class="headerlink" href="#morlet-wavelet" title="Permalink to this headline">¶</a></h2>
+<p>#TODO</p>
+<p>The Morlet Wavelet function in time and frequency domain are defined as <span class="math notranslate nohighlight">\(\psi(t)\)</span> and <span class="math notranslate nohighlight">\(\psi(f)\)</span> as below;</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\psi(t) &amp;= C_{\sigma}\pi^{-0.25}  e^{-0.5t^2} \left(e^{j\sigma t}-K_{\sigma} \right)\\
+\psi(w) &amp;= C_{\sigma}\pi^{-0.25} \left(e^{-0.5(\sigma-w)^2} -K_{\sigma}e^{-0.5w^2} \right)\end{split}\]</div>
+<p><strong>where</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C_{\sigma} &amp;= \left(1+ e^{-\sigma^{2}} - 2e^{-\frac{3}{4}\sigma^{2}}   \right)^{-0.5}\\
+K_{\sigma} &amp;=e^{-0.5\sigma^{2}}\\
+w &amp;= 2\pi f\end{split}\]</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Morlet&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gabor-wavelet">
+<h2>Gabor wavelet<a class="headerlink" href="#gabor-wavelet" title="Permalink to this headline">¶</a></h2>
+<p>#TODO</p>
+<p>The Gabor Wavelet function (technically same as Gaussian) in time and frequency domain are defined as <span class="math notranslate nohighlight">\(\psi(t)\)</span> and <span class="math notranslate nohighlight">\(\psi(f)\)</span> as below;</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\psi(t) &amp;= e^{-(t-t_0)^2/a^2}e^{-jf_0(t-t_0)}\\
+\psi(f) &amp;= e^{-((f-f_0)a)^2}e^{-jt_0(f-f_0)}\end{split}\]</div>
+<p><strong>where</strong>
+<span class="math notranslate nohighlight">\(a\)</span> is oscilation rate and <span class="math notranslate nohighlight">\(f_0\)</span>  is center frequency</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Gabor&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="poisson-wavelet">
+<h2>Poisson wavelet<a class="headerlink" href="#poisson-wavelet" title="Permalink to this headline">¶</a></h2>
+<p>Poisson wavelet is defined by positive integers ($n$), unlike other, and associated with Poisson probability distribution</p>
+<p>The Poisson Wavelet function in time and frequency domain are defined as <span class="math notranslate nohighlight">\(\psi(t)\)</span> and <span class="math notranslate nohighlight">\(\psi(f)\)</span> as below;</p>
+<div class="section" id="type-1-n">
+<h3>#Type 1 (n)<a class="headerlink" href="#type-1-n" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\psi(t) &amp;= \left(\frac{t-n}{n!}\right)t^{n-1} e^{-t}\\
+\psi(w) &amp;= \frac{-jw}{(1+jw)^{n+1}}\end{split}\]</div>
+<p><strong>where</strong></p>
+<p>Admiddibility const <span class="math notranslate nohighlight">\(C_{\psi} =\frac{1}{n}\)</span> and  <span class="math notranslate nohighlight">\(w = 2\pi f\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Poisson&#39;</span><span class="p">,</span><span class="n">method</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="type-2">
+<h3>#Type 2<a class="headerlink" href="#type-2" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\psi(t) &amp;= \frac{1}{\pi} \frac{1-t^2}{(1+t^2)^2}\\
+\psi(t) &amp;= p(t) + \frac{d}{dt}p(t)\\
+\psi(w) &amp;= |w|e^{-|w|}\end{split}\]</div>
+<p><strong>where</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}p(t) &amp;=\frac{1}{\pi}\frac{1}{1+t^2}\\
+w &amp;= 2\pi f\end{split}\]</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Poisson&#39;</span><span class="p">,</span><span class="n">method</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="type-3-n">
+<h3>#Type 3 (n)<a class="headerlink" href="#type-3-n" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\psi(t) &amp;= \frac{1}{2\pi}(1-jt)^{-(n+1)}\\
+\psi(w) &amp;= \frac{1}{\Gamma{n+1}}w^{n}e^{-w}u(w)\end{split}\]</div>
+<p><strong>where</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{unit step function }\quad u(w) &amp;=1 \quad \text{ if  $w&gt;=0$ }\quad \text{else  } 0\\
+w &amp;= 2\pi f\end{split}\]</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;Poisson&#39;</span><span class="p">,</span><span class="n">method</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>#TODO</p>
+</div>
+</div>
+<div class="section" id="maxican-wavelet">
+<h2>Maxican wavelet<a class="headerlink" href="#maxican-wavelet" title="Permalink to this headline">¶</a></h2>
+<p>Complex Mexican hat wavelet is derived from the conventional Mexican hat wavelet. It is a low-oscillation wavelet which is modulated by a complex exponential function with frequency <span class="math notranslate nohighlight">\(f_0\)</span> <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_Mexican_hat_wavelet">Ref</a>..</p>
+<p>The Maxican Wavelet function in time and frequency domain are defined as <span class="math notranslate nohighlight">\(\psi(t)\)</span> and <span class="math notranslate nohighlight">\(\psi(f)\)</span> as below;</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\psi(t) &amp;= \frac{2}{\sqrt{3}} \pi^{-\frac{1}{4}}\left(\sqrt{\pi}(1-t^2)e^{-\frac{1}{2}t^2} - \left(\sqrt{2}jt + \sqrt{\pi}erf\left[\frac{j}{\sqrt{2}}t \right] (1-t^2)e^{-\frac{1}{2}t^2}\right)\right)e^{-2\pi jf_0 t}\\\\
+\psi(w) &amp;= 2\sqrt{\frac{2}{3}}\pi^{-1/4}(w-w_0)^2e^{-\frac{1}{2} (w-w_0)^2}  \quad \text{ if  $w\ge 0$,}\quad \text{ 0  else}\end{split}\]</div>
+<p><strong>where</strong>  <span class="math notranslate nohighlight">\(w = 2\pi f\)</span> and <span class="math notranslate nohighlight">\(w_0 = 2\pi f_0\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;cMaxican&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>#TODO</p>
+</div>
+<div class="section" id="shannon-wavelet">
+<h2>Shannon wavelet<a class="headerlink" href="#shannon-wavelet" title="Permalink to this headline">¶</a></h2>
+<p>Complex Shannon wavelet is the most simplified wavelet function, exploiting Sinc function by modulating with sinusoidal, which results in an ideal bandpass filter. Real Shannon wavelet is modulated by only a cos function <a class="reference external" href="https://en.wikipedia.org/wiki/Shannon_wavelet">Ref</a>.</p>
+<p>The Shannon Wavelet function in time and frequency domain are defined as <span class="math notranslate nohighlight">\(\psi(t)\)</span> and <span class="math notranslate nohighlight">\(\psi(f)\)</span> as below;</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\psi(t) &amp;= Sinc(t/2) \cdot e^{-2j\pi f_0t}\\
+\psi(w) &amp;= \prod \left( \frac{w-w_0}{\pi} \right)\end{split}\]</div>
+<p><strong>where</strong></p>
+<p>where <span class="math notranslate nohighlight">\(\prod (x) = 1\)</span> if <span class="math notranslate nohighlight">\(x \leq 0.5\)</span>, 0 else and <span class="math notranslate nohighlight">\(w = 2\pi f\)</span> and <span class="math notranslate nohighlight">\(w_0 = 2\pi f_0\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XW</span><span class="p">,</span><span class="n">S</span> <span class="o">=</span> <span class="n">ScalogramCWT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">wType</span><span class="o">=</span><span class="s1">&#39;cShannon&#39;</span><span class="p">,</span><span class="n">PlotPSD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>#TODO</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./core"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="atar_algo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ATAR - Automatic and Tunable Artifact Removal Algorithm for EEG</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../info/contacts.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contacts</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Nikesh Bajaj<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
